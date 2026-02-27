@@ -1,54 +1,45 @@
 import React from 'react';
+import './styles.css'; // Assuming styles are in a separate file
 
-const WeddingInvitation: React.FC = () => {
+const WeddingInvitation = () => {
     return (
-        <div>
-            <header>
-                <div className="envelope">
-                    <h1>You're Invited!</h1>
-                </div>
+        <div className="invitation-container">
+            <header className="invitation-header">
+                <h1 className="invitation-title">You're Invited to Our Wedding!</h1>
             </header>
-            <nav className="tabs">
-                <ul>
-                    <li>Countdown</li>
-                    <li>Love Story</li>
-                    <li>Vows</li>
-                    <li>Gallery</li>
-                    <li>Music</li>
-                    <li>RSVP</li>
-                </ul>
-            </nav>
-            <section className="countdown-timer">
-                <h2>Countdown to the Big Day!</h2>
-                <div id="timer">00:00:00</div>
+            <section className="countdown">
+                <h2>Countdown to the Big Day</h2>
+                <div className="countdown-timer">
+                    {/* Countdown Timer Logic */}
+                </div>
             </section>
             <section className="love-story">
                 <h2>Our Love Story</h2>
-                <p>Once upon a time...</p>
+                <p>It all began...</p>
             </section>
             <section className="vows">
                 <h2>Our Vows</h2>
-                <p>Today, I promise...</p>
+                <p>We promise to...</p>
             </section>
             <section className="gallery">
                 <h2>Gallery</h2>
-                <div className="images">
-                    {/* Image components will go here */}
+                <div className="image-gallery">
+                    {/* Gallery Images */}
                 </div>
             </section>
-            <section className="music-player">
-                <h2>Our Playlist</h2>
+            <section className="music">
+                <h2>Our Favorite Songs</h2>
                 <audio controls>
-                    <source src="music.mp3" type="audio/mpeg" />
+                    <source src="your-music-file.mp3" type="audio/mpeg" />
                     Your browser does not support the audio element.
                 </audio>
             </section>
-            <section className="rsvp-form">
+            <section className="rsvp">
                 <h2>RSVP</h2>
                 <form>
                     <input type="text" placeholder="Your Name" required />
                     <input type="email" placeholder="Your Email" required />
-                    <button type="submit">Submit</button>
+                    <button type="submit">Send</button>
                 </form>
             </section>
         </div>
