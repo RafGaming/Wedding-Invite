@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './WeddingComponent.css'; // Assume a separate CSS file for styling
 
 const WeddingComponent = () => {
     const [timeRemaining, setTimeRemaining] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -7,12 +6,12 @@ const WeddingComponent = () => {
     const [rsvpName, setRsvpName] = useState('');
     const [rsvpCount, setRsvpCount] = useState(1);
 
-    const weddingDate = new Date('2026-06-01T00:00:00Z'); // Set the wedding date here
+    const weddingDate = new Date('2026-06-01T00:00:00Z');
 
     useEffect(() => {
         const interval = setInterval(() => {
             const now = new Date();
-            const distance = weddingDate - now;
+            const distance = weddingDate.getTime() - now.getTime(); // ✅ FIX: use .getTime()
             setTimeRemaining({
                 days: Math.floor(distance / (1000 * 60 * 60 * 24)),
                 hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
@@ -24,10 +23,9 @@ const WeddingComponent = () => {
         return () => clearInterval(interval);
     }, []);
 
-    const handleRsvpSubmit = (e) => {
+    const handleRsvpSubmit = (e: React.FormEvent<HTMLFormElement>) => { // ✅ FIX: typed event
         e.preventDefault();
         console.log(`RSVP from: ${rsvpName}, Number of Guests: ${rsvpCount}`);
-        // Logic to handle RSVP submission
     };
 
     return (
@@ -48,7 +46,7 @@ const WeddingComponent = () => {
                     <div className="rsvp-tab">
                         <form onSubmit={handleRsvpSubmit}>
                             <input type="text" value={rsvpName} onChange={(e) => setRsvpName(e.target.value)} placeholder="Your Name" required />
-                            <input type="number" value={rsvpCount} onChange={(e) => setRsvpCount(e.target.value)} min="1" max="10" required />
+                            <input type="number" value={rsvpCount} onChange={(e) => setRsvpCount(Number(e.target.value))} min="1" max="10" required />
                             <button type="submit">RSVP</button>
                         </form>
                     </div>
