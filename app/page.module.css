@@ -1,0 +1,100 @@
+:root {
+    --bg-color-light: #ffffff;
+    --bg-color-dark: #222222;
+    --text-color-light: #000000;
+    --text-color-dark: #ffffff;
+    --accent-color: #ff69b4; /* Pink for romantic theme */
+    --heart-animation: floating 10s linear infinite;
+}
+
+body {
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    font-family: 'Arial', sans-serif;
+}
+
+body.dark-mode {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+}
+
+h1, h2, h3 {
+    font-family: 'Georgia', serif;
+    text-align: center;
+}
+
+#floating-hearts {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+@keyframes floating {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
+
+.countdown {
+    text-align: center;
+    font-size: 2rem;
+    margin: 20px 0;
+}
+
+tabs {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+tab {
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.gallery img {
+    width: 200px;
+    margin: 10px;
+    transition: transform 0.2s;
+}
+
+.gallery img:hover {
+    transform: scale(1.1);
+}
+
+.music-player {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.rsvp-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rsvp-form input, .rsvp-form textarea {
+    margin: 5px;
+    padding: 10px;
+    width: 300px;
+}
+
+.rsvp-form button {
+    padding: 10px 20px;
+    background-color: var(--accent-color);
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.rsvp-form button:hover {
+    background-color: darken(var(--accent-color), 10%);
+}
