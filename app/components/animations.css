@@ -2,25 +2,83 @@
 
 .envelope-wrapper { display: flex; justify-content: center; position: relative; perspective: 2000px; }
 
-/* MAIN ENVELOPE STRUCTURE */ .royal-envelope { position: relative; width: 380px; height: 260px; cursor: pointer; transform-style: preserve-3d; transition: transform 0.4s ease, filter 0.4s ease; perspective: 2000px; }
+/* MAIN ENVELOPE STRUCTURE */ .royal-envelope { position: relative; width: 380px; height: 260px; cursor: pointer; transform-style: preserve-3d; transition: transform 0.4s ease; perspective: 2000px; }
 
-.royal-envelope:hover { transform: scale(1.06) rotateX(4deg); filter: drop-shadow(0 0 25px rgba(212,175,55,0.5)); }
+@keyframes envelopeShimmer { 0%, 100% { filter: drop-shadow(0 0 25px rgba(212,175,55,0.5)); } 50% { filter: drop-shadow(0 0 45px rgba(245,230,163,0.85)); } }
 
-/* ENVELOPE FRONT PANEL */ .envelope-front { position: absolute; inset: 0; background: #fff8ec url("/textures/paper.png"); background-size: cover; border-radius: 16px; border: 4px solid var(--gold1); box-shadow: inset 0 0 12px rgba(255,255,255,0.9), 0 10px 22px var(--shadow-strong); z-index: 2;
+.royal-envelope:hover { transform: scale(1.06) rotateX(4deg); animation: envelopeShimmer 1.8s ease-in-out infinite; }
 
-display: flex; justify-content: center; align-items: center; }
+/* ENVELOPE FRONT PANEL */
+.envelope-front {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(212,175,55,0.03) 3px, rgba(212,175,55,0.03) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(212,175,55,0.02) 3px, rgba(212,175,55,0.02) 4px),
+    linear-gradient(145deg, #fff8ec, #fdf0d5);
+  border-radius: 16px;
+  border: 5px solid transparent;
+  background-clip: padding-box;
+  outline: 1px solid rgba(212,175,55,0.35);
+  outline-offset: 5px;
+  box-shadow: inset 0 0 20px rgba(255,255,255,0.9), inset 0 0 60px rgba(212,175,55,0.08), 0 10px 22px var(--shadow-strong), 0 0 0 5px #d4af37, 0 0 0 7px rgba(212,175,55,0.25);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-/* OPEN INVITATION TEXT */ .royal-open-text { font-size: 26px; text-shadow: 0 0 12px rgba(212,175,55,0.5); }
+/* INNER DECORATIVE BORDER */ .envelope-inner-border { position: absolute; inset: 10px; border: 1px solid rgba(212,175,55,0.45); border-radius: 10px; pointer-events: none; box-shadow: inset 0 0 8px rgba(212,175,55,0.1); }
 
-/* BACK PANEL */ .envelope-back { position: absolute; inset: 0; background: #fdf7ea url("/textures/paper.png"); background-size: cover; border-radius: 16px; border: 4px solid var(--gold1); z-index: 1; box-shadow: 0 6px 20px var(--shadow-soft); }
+/* CORNER ORNAMENTS */ .envelope-corner-ornament { position: absolute; font-size: 12px; color: var(--gold1); opacity: 0.65; pointer-events: none; line-height: 1; }
+.envelope-corner-ornament.tl { top: 16px; left: 16px; }
+.envelope-corner-ornament.tr { top: 16px; right: 16px; }
+.envelope-corner-ornament.bl { bottom: 16px; left: 16px; }
+.envelope-corner-ornament.br { bottom: 16px; right: 16px; }
 
-/* FLAP */ .envelope-flap { position: absolute; top: 0; width: 100%; height: 55%; background: linear-gradient(180deg, #fff5d7, #e9d7a6); clip-path: polygon(0 0, 100% 0, 50% 85%); border-top-left-radius: 16px; border-top-right-radius: 16px; border-left: 4px solid var(--gold1); border-right: 4px solid var(--gold1); border-top: 4px solid var(--gold1); border-bottom: none;
+/* TEXT BANNER */ .envelope-text-banner { position: relative; padding: 8px 22px; background: rgba(20,12,0,0.52); border-radius: 30px; border: 1px solid rgba(212,175,55,0.6); box-shadow: 0 2px 12px rgba(0,0,0,0.35), inset 0 1px 0 rgba(212,175,55,0.2); backdrop-filter: blur(2px); }
 
-transform-origin: top center; z-index: 3; transition: transform 0.9s cubic-bezier(.17,.67,.46,1.16); box-shadow: inset 0 0 18px rgba(255,255,255,0.8), 0 10px 20px rgba(0,0,0,0.2); }
+/* OPEN INVITATION TEXT */
+.royal-open-text {
+  font-family: "Great Vibes", cursive;
+  font-size: 30px;
+  letter-spacing: 2px;
+  color: #e8c84a;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8), 0 0 18px rgba(212,175,55,0.55), 0 -1px 2px rgba(0,0,0,0.5);
+}
 
-/* OPEN ON CLICK */ .royal-envelope:active .envelope-flap { transform: rotateX(165deg); }
+/* BACK PANEL */ .envelope-back { position: absolute; inset: 0; background: linear-gradient(145deg, #fdf7ea, #f5ecd8); border-radius: 16px; border: 4px solid var(--gold1); z-index: 1; box-shadow: 0 6px 20px var(--shadow-soft); }
+
+/* FLAP */ .envelope-flap { position: absolute; top: 0; width: 100%; height: 55%; background: linear-gradient(180deg, #fff5d7, #e9d7a6); clip-path: polygon(0 0, 100% 0, 50% 85%); border-top-left-radius: 16px; border-top-right-radius: 16px; border-left: 5px solid var(--gold1); border-right: 5px solid var(--gold1); border-top: 5px solid var(--gold1); border-bottom: none;
+
+transform-origin: top center; z-index: 3; transition: transform 0.9s cubic-bezier(.17,.67,.46,1.16); box-shadow: inset 0 0 22px rgba(255,255,255,0.85), 0 12px 24px rgba(0,0,0,0.25), inset 0 -4px 10px rgba(212,175,55,0.15); }
+
+/* OPEN ON CLICK */ .is-opening .envelope-flap { transform: rotateX(165deg); }
 
 /* GOLD GLOW BEHIND ENVELOPE */ .envelope-glow { position: absolute; inset: -40px; background: radial-gradient(circle, rgba(212,175,55,0.55), transparent 70%); filter: blur(35px); z-index: 0; opacity: 0.7; pointer-events: none; }
+
+/* WAX SEAL */
+.envelope-seal {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 64px;
+  background: radial-gradient(circle at 38% 35%, #e84040, #c0392b 45%, #7b1a1a);
+  border-radius: 50%;
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.55), 0 0 14px rgba(192,57,43,0.45), inset 0 -3px 8px rgba(0,0,0,0.45), inset 0 2px 5px rgba(255,255,255,0.12);
+  border: 2px solid #e05050;
+}
+
+/* SEAL SHINE */ .seal-shine { position: absolute; top: 6px; left: 12px; width: 18px; height: 10px; background: radial-gradient(ellipse, rgba(255,255,255,0.35), transparent); border-radius: 50%; pointer-events: none; }
+
+.seal-text { position: relative; font-family: "Great Vibes", cursive; font-size: 18px; color: var(--gold-light); text-shadow: 0 1px 4px rgba(0,0,0,0.6); }
 
 /* FLOAT-UP ANIMATION */ @keyframes floatUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
 

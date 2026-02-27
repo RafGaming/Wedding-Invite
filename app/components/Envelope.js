@@ -32,14 +32,20 @@ export default function Envelope() {
         >
           <div className="envelope-back"></div>
           <div className="envelope-front">
-            <span className="gold-text royal-open-text">
-              ✉ Open Invitation
-            </span>
+            <div className="envelope-inner-border"></div>
+            <span className="envelope-corner-ornament tl">✦</span>
+            <span className="envelope-corner-ornament tr">✦</span>
+            <span className="envelope-corner-ornament bl">✦</span>
+            <span className="envelope-corner-ornament br">✦</span>
+            <div className="envelope-text-banner">
+              <span className="royal-open-text">✉ Open Invitation</span>
+            </div>
           </div>
           <div className="envelope-flap"></div>
           <div className="envelope-glow"></div>
           <div className="envelope-seal">
-            <span className="seal-text">J & F</span>
+            <span className="seal-text">J &amp; F</span>
+            <div className="seal-shine"></div>
           </div>
         </div>
       )}
