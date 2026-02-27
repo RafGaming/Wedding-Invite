@@ -1,17 +1,19 @@
-// app/layout.tsx
+import type { Metadata } from 'next'
+import './globals.css'
 
-import { ReactNode } from 'react';
-import './globals.css';
+export const metadata: Metadata = {
+  title: 'Aviana & Liam - Wedding Invitation',
+  description: 'You are cordially invited to our wedding celebration',
+}
 
-export const metadata = { 
-  title: 'Wedding Invite', 
-  description: 'A beautiful wedding invitation website',
-};
-
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
       <body>{children}</body>
     </html>
-  );
+  )
 }
