@@ -1,23 +1,23 @@
-export default function Card() {
-  return (
-    <div className="lux-card">
-      <h1 className="lux-title gold-text">You Are Invited</h1>
-      <p className="lux-sub">To the wedding celebration of</p>
+  {/* ornamental corners */}
+  <div className="corner tl"></div>
+  <div className="corner tr"></div>
+  <div className="corner bl"></div>
+  <div className="corner br"></div>
 
-      <div className="lux-names">
-        <span className="name gold-text">Jethro Dionisio</span>
-        <span className="amp">&</span>
-        <span className="name gold-text">Francisca Domingo‑Dionisio</span>
-      </div>
+  <h1 className="royal-card-title gold-text">You Are Invited</h1>
 
-      <p className="lux-date">
-        Date: <span className="gold-text">TBA</span>
-      </p>
+  <p className="royal-sub">To the wedding celebration of</p>
 
-      <div className="gold-border-corner tl"></div>
-      <div className="gold-border-corner tr"></div>
-      <div className="gold-border-corner bl"></div>
-      <div className="gold-border-corner br"></div>
-    </div>
-  );
-}
+  <div className="royal-names">
+    <span className="royal-name gold-shimmer">Jethro Dionisio</span>
+    <span className="royal-and">&</span>
+    <span className="royal-name gold-shimmer">Francisca Domingo‑Dionisio</span>
+  </div>
+
+  <div className="royal-divider"></div>
+
+  <p className="royal-date">
+    Date: <span className="gold-text">TBA</span>
+  </p>
+
+</div>
