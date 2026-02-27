@@ -26,7 +26,7 @@ export default function Home() {
       <div style={{
         display: "flex",
         justifyContent: "center",
-        marginTop: "100px",
+        marginTop: "100px"
       }}>
         <Envelope />
       </div>
