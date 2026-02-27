@@ -1,0 +1,242 @@
+/* ═══════════════════════════════════════════
+   DECORATIVE PAGE FRAME OVERLAY
+   ═══════════════════════════════════════════ */
+
+.page-frame {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+}
+
+/* ── Double-border lines ── */
+.page-frame-outer {
+  position: absolute;
+  inset: 10px;
+  border: 2px solid rgba(212, 175, 55, 0.5);
+  pointer-events: none;
+}
+
+.page-frame-inner {
+  position: absolute;
+  inset: 20px;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  pointer-events: none;
+}
+
+/* ── Shimmer overlay that travels around the outer border ── */
+.page-frame-shimmer {
+  position: absolute;
+  inset: 10px;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.page-frame-shimmer::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -100%;
+  width: 60%;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 175, 55, 0.6),
+    rgba(245, 230, 163, 0.9),
+    rgba(212, 175, 55, 0.6),
+    transparent
+  );
+  animation: borderShimmer 8s linear infinite;
+}
+
+@keyframes borderShimmer {
+  0%   { top: -4px;   left: -100%; width: 60%; height: 6px;  transform: none; }
+  /* across top */
+  24%  { top: -4px;   left: 110%;  width: 60%; height: 6px;  transform: none; }
+  /* down right side — rotate 90deg */
+  25%  { top: -4px;   left: 110%;  width: 6px; height: 60%;  transform: rotate(90deg) translateX(-100%); }
+  49%  { top: 110%;   left: 110%;  width: 6px; height: 60%;  transform: rotate(90deg) translateX(-100%); }
+  /* across bottom — flip */
+  50%  { top: 100%;   left: 110%;  width: 60%; height: 6px;  transform: scaleX(-1); }
+  74%  { top: 100%;   left: -60%;  width: 60%; height: 6px;  transform: scaleX(-1); }
+  /* up left side */
+  75%  { top: 100%;   left: -4px;  width: 6px; height: 60%;  transform: rotate(90deg) scaleY(-1); }
+  99%  { top: -60%;   left: -4px;  width: 6px; height: 60%;  transform: rotate(90deg) scaleY(-1); }
+  100% { top: -4px;   left: -100%; width: 60%; height: 6px;  transform: none; }
+}
+
+/* ── Corner pieces ── */
+.page-frame-corner {
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  pointer-events: none;
+}
+
+.page-frame-corner.tl { top: 6px;    left: 6px;    }
+.page-frame-corner.tr { top: 6px;    right: 6px;   }
+.page-frame-corner.bl { bottom: 6px; left: 6px;    }
+.page-frame-corner.br { bottom: 6px; right: 6px;   }
+
+/* Corner glow behind each corner piece */
+.page-frame-corner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.45), transparent 70%);
+  border-radius: 50%;
+  animation: cornerGlow 4s ease-in-out infinite;
+}
+
+@keyframes cornerGlow {
+  0%,  100% { opacity: 0.4; }
+  50%        { opacity: 1.0; }
+}
+
+/* L-shaped bracket lines drawn as pseudo-elements on SVG-like divs */
+.corner-bracket {
+  position: absolute;
+  inset: 0;
+}
+
+.corner-bracket::before,
+.corner-bracket::after {
+  content: "";
+  position: absolute;
+  background: rgba(212, 175, 55, 0.7);
+  border-radius: 2px;
+}
+
+/* Horizontal arm */
+.corner-bracket::before {
+  width: 55px;
+  height: 3px;
+  top: 0;
+  left: 0;
+}
+
+/* Vertical arm */
+.corner-bracket::after {
+  width: 3px;
+  height: 55px;
+  top: 0;
+  left: 0;
+}
+
+.page-frame-corner.tr .corner-bracket::before { left: auto; right: 0; }
+.page-frame-corner.tr .corner-bracket::after  { left: auto; right: 0; }
+.page-frame-corner.bl .corner-bracket::before { top: auto;  bottom: 0; }
+.page-frame-corner.bl .corner-bracket::after  { top: auto;  bottom: 0; }
+.page-frame-corner.br .corner-bracket::before { top: auto;  bottom: 0; left: auto; right: 0; }
+.page-frame-corner.br .corner-bracket::after  { top: auto;  bottom: 0; left: auto; right: 0; }
+
+/* Flourish character inside each corner */
+.corner-flourish {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: rgba(212, 175, 55, 0.7);
+  line-height: 1;
+  font-family: Georgia, serif;
+}
+
+.page-frame-corner.tr .corner-flourish { transform: scaleX(-1); }
+.page-frame-corner.bl .corner-flourish { transform: scaleY(-1); }
+.page-frame-corner.br .corner-flourish { transform: scale(-1, -1); }
+
+/* ── Top edge ornament ── */
+.page-frame-top-ornament {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.ornament-line {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 175, 55, 0.6),
+    transparent
+  );
+}
+
+.ornament-diamond {
+  font-size: 12px;
+  color: rgba(212, 175, 55, 0.75);
+  line-height: 1;
+}
+
+/* ── Bottom edge ornament ── */
+.page-frame-bottom-ornament {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.ornament-initials {
+  font-family: "Great Vibes", cursive, Georgia, serif;
+  font-size: 18px;
+  color: rgba(212, 175, 55, 0.75);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .page-frame-corner {
+    width: 40px;
+    height: 40px;
+  }
+
+  .corner-bracket::before { width: 40px; }
+  .corner-bracket::after  { height: 40px; }
+
+  .corner-flourish { font-size: 16px; }
+
+  .page-frame-outer {
+    border-width: 1.5px;
+  }
+
+  .page-frame-shimmer { display: none; }
+}
+
+@media (max-width: 480px) {
+  .page-frame-corner {
+    width: 28px;
+    height: 28px;
+  }
+
+  .corner-bracket::before { width: 28px; }
+  .corner-bracket::after  { height: 28px; }
+
+  .corner-flourish { display: none; }
+
+  .page-frame-outer {
+    border-width: 1px;
+  }
+
+  .page-frame-top-ornament,
+  .page-frame-bottom-ornament {
+    display: none;
+  }
+
+  .page-frame-corner::before {
+    display: none;
+  }
+}

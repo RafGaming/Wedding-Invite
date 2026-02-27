@@ -4,10 +4,12 @@ import Petals from "./components/Petals";
 import CursorTrail from "./components/CursorTrail";
 import MusicPlayer from "./components/MusicPlayer";
 import ScrollSections from "./components/ScrollSections";
+import PageFrame from "./components/PageFrame";
 
 export default function Home() {
   return (
     <main>
+      <PageFrame />
       {/* cinematic parallax background */}
       <div className="parallax-bg">
         <div className="bg-layer layer1"></div>

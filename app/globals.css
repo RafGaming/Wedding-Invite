@@ -127,16 +127,20 @@ body {
 
 .royal-envelope {
   position: relative;
-  width: 380px;
-  height: 260px;
+  width: 520px;
+  height: 360px;
   cursor: pointer;
   transform-style: preserve-3d;
-  transition: transform 0.4s ease, filter 0.4s ease;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s cubic-bezier(0.23, 1, 0.32, 1), filter 0.6s ease;
+  border-bottom: 3px solid #e8dcc8;
 }
 
 .royal-envelope:hover {
-  transform: scale(1.06) rotateX(4deg);
-  filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.5));
+  transform: translateY(-10px) rotateX(2deg);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25))
+          drop-shadow(0 8px 16px rgba(0,0,0,0.2))
+          drop-shadow(0 20px 40px rgba(0,0,0,0.15))
+          drop-shadow(0 0 60px rgba(212,175,55,0.35));
 }
 
 .envelope-front {
@@ -155,7 +159,7 @@ body {
 
 .royal-open-text {
   font-family: "Great Vibes", cursive;
-  font-size: 28px;
+  font-size: 34px;
   text-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
   letter-spacing: 1px;
 }
@@ -210,20 +214,35 @@ body {
 /* wax-seal style badge */
 .envelope-seal {
   position: absolute;
-  bottom: -20px;
+  bottom: -28px;
   left: 50%;
   transform: translateX(-50%);
-  width: 50px;
-  height: 50px;
-  background: radial-gradient(circle, #c0392b, #922b21);
-  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  background: radial-gradient(circle at 35% 35%, #e85d50, #c0392b 50%, #922b21);
+  border-radius: 48% 52% 46% 54% / 50% 48% 52% 50%;
   z-index: 4;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4),
-    inset 0 -2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45),
+    inset 0 -2px 8px rgba(0, 0, 0, 0.35);
   border: 2px solid #e74c3c;
+  overflow: hidden;
+}
+
+.envelope-seal::before {
+  content: "";
+  position: absolute;
+  top: 8%;
+  left: 12%;
+  width: 35%;
+  height: 25%;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: rotate(-30deg);
+  filter: blur(3px);
+  pointer-events: none;
 }
 
 .seal-text {
@@ -737,12 +756,18 @@ body {
    ════════════��═════════════════════════ */
 @media (max-width: 768px) {
   .royal-envelope {
-    width: 300px;
-    height: 210px;
+    width: 420px;
+    height: 290px;
   }
 
   .royal-open-text {
-    font-size: 22px;
+    font-size: 26px;
+  }
+
+  .envelope-seal {
+    width: 56px;
+    height: 56px;
+    bottom: -22px;
   }
 
   .royal-card-title {
@@ -773,8 +798,14 @@ body {
 
 @media (max-width: 480px) {
   .royal-envelope {
-    width: 260px;
-    height: 180px;
+    width: 320px;
+    height: 220px;
+  }
+
+  .envelope-seal {
+    width: 46px;
+    height: 46px;
+    bottom: -18px;
   }
 
   .royal-card-title {
