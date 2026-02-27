@@ -1,3 +1,11 @@
+"use client"; import { useState } from "react"; import Card from "./Card"; import "./animations.css";
+
+export default function Envelope() { const [open, setOpen] = useState(false);
+
+return (
+
+
+
   {!open && (
     <div
       className="royal-envelope float-up"
@@ -11,11 +19,10 @@
       <div className="envelope-glow"></div>
     </div>
   )}
-
   {open && (
     <div className="fade-in-soft" style={{ marginTop: "40px" }}>
       <Card />
     </div>
   )}
-
 </div>
+); }
