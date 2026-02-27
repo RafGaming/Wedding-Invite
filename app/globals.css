@@ -128,6 +128,42 @@ body {
   from { opacity: 0; filter: blur(10px); }
   to { opacity: 1; filter: blur(0); }
 }
+.parallax-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -3;
+}
+
+.bg-layer {
+  width: 110%;
+  height: 110%;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px) brightness(0.7);
+  opacity: 0.55;
+  animation: slowZoom 20s ease-in-out infinite alternate;
+}
+
+.layer1 {
+  background-image: url('/bg/groom.jpg');
+  transform: translateZ(-2px) scale(1.2);
+}
+
+.layer2 {
+  background-image: url('/bg/bride.jpg');
+  transform: translateZ(-1px) scale(1.1);
+  mix-blend-mode: soft-light;
+}
+
+@keyframes slowZoom {
+  from { transform: scale(1.1); }
+  to { transform: scale(1.25); }
+}
 
 @keyframes sparkleFloat {
   from { transform: translateY(0) scale(1); opacity: 1; }
