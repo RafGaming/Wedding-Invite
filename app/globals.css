@@ -171,7 +171,45 @@ body::before {
 }
 
 @keyframes cursorFade {
-  0%   { opacity: 1; transform: scale(1); }
-  50%  { opacity: 0.5; transform: scale(0.8); }
-  100% { opacity: 0; transform: scale(0.6); }
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.2); }
+}
+
+/* ---------------------------------------------------------
+   SCROLLBAR STYLE
+----------------------------------------------------------*/
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--gold1), var(--gold3));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #efe9d8;
+}
+
+/* ---------------------------------------------------------
+   RESPONSIVE DESIGN
+----------------------------------------------------------*/
+
+@media(max-width: 768px) {
+  .bg-layer {
+    animation: slowZoom 22s ease-in-out infinite alternate;
+    filter: blur(14px) brightness(0.7);
+  }
+  body {
+    background-size: 150%;
+  }
+  .sparkle {
+    width: 16px;
+    height: 16px;
+  }
+  .petal {
+    width: 20px;
+    height: 20px;
+  }
 }
