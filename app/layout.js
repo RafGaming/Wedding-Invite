@@ -1,6 +1,8 @@
+import "./globals.css";
+
 export const metadata = {
   title: "Wedding Invitation",
-  description: "Jethro & Francisca Wedding Invitation",
+  description: "Jethro & Francisca Wedding Invitation"
 };
 
 export default function RootLayout({ children }) {
