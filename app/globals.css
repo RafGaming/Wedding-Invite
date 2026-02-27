@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  background: #f7f3ea;
+  color: #4a3e2c;
+  overflow-x: hidden;
+}
+
+/* blended blurred background */
+.bg-blend {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+  filter: blur(10px) brightness(0.7);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.50;
+  mix-blend-mode: soft-light;
+}
+
+/* gold text */
+.gold-text {
+  background: linear-gradient(45deg, #d4af37, #f5e6a2);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: bold;
+}
+
+/* sparkle */
+.sparkle {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  animation: sparkleFloat 3s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes sparkleFloat {
+  from { transform: translateY(0) scale(1); opacity: 1; }
+  to   { transform: translateY(-120px) scale(0.4); opacity: 0; }
+}
