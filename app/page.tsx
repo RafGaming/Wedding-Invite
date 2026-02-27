@@ -1,79 +1,71 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import './style.css'; // Assuming you have a CSS file for styles
 
 const WeddingInvite = () => {
-  const [countdown, setCountdown] = useState(0);
-  const [tab, setTab] = useState('info');
-  const [rsvp, setRsvp] = useState({ name: '', attending: false });
-  const [loveCounter, setLoveCounter] = useState(0);
+    const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+    const [loves, setLoves] = useState(0);
+    const weddingDate = new Date('2026-06-15T00:00:00Z'); // Set the wedding date
 
-  useEffect(() => {
-    // Countdown Timer - Set to the wedding date
-    const weddingDate = new Date('2026-05-01T00:00:00Z').getTime();
-    const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = weddingDate - now;
-      setCountdown(distance);
-    }, 1000);
+    useEffect(() => {
+        const timer = setInterval(() => {
+            const now = new Date();
+            const distance = weddingDate - now;
 
-    return () => clearInterval(timer);
-  }, []);
-  
-  const handleRsvpChange = (e) => {
-    const { name, value } = e.target;
-    setRsvp((prev) => ({ ...prev, [name]: value }));
-  };
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  const handleRsvpSubmit = (e) => {
-    e.preventDefault();
-    alert(`RSVP submitted for ${rsvp.name}`);
-  };
+            setTimeLeft({ days, hours, minutes, seconds });
 
-  const toggleTab = (selectedTab) => {
-    setTab(selectedTab);
-  };
+            if (distance < 0) {
+                clearInterval(timer);
+            }
+        }, 1000);
 
-  const handleLove = () => {
-    setLoveCounter(loveCounter + 1);
-    // Insert confetti effect logic here
-  };
+        return () => clearInterval(timer);
+    }, []);
 
-  const formatCountdown = (countdown) => {
-    const days = Math.floor(countdown / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((countdown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((countdown % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((countdown % (1000 * 60)) / 1000);
-    return `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  };
+    const handleLoveClick = () => {
+        setLoves(loves + 1);
+    };
 
-  return (
-    <div className='wedding-invite'>
-      <h1>You're Invited to Our Wedding!</h1>
-      <div className='countdown'>
-        <h2>Countdown to Wedding:</h2>
-        <p>{formatCountdown(countdown)}</p>
-      </div>
-      <div className='tabs'>
-        <button onClick={() => toggleTab('info')}>Event Info</button>
-        <button onClick={() => toggleTab('rsvp')}>RSVP</button>
-      </div>
-      {tab === 'info' && <div className='info'>Event details go here...</div>}
-      {tab === 'rsvp' && (
-        <form onSubmit={handleRsvpSubmit}>
-          <input type='text' name='name' placeholder='Your Name' onChange={handleRsvpChange} />
-          <label>
-            <input type='checkbox' name='attending' onChange={(e) => setRsvp({ ...rsvp, attending: e.target.checked })} /> Attending
-          </label>
-          <button type='submit'>Submit RSVP</button>
-        </form>
-      )}
-      <div className='love-counter'>
-        <button onClick={handleLove}>💖 Love this!</button>
-        <p>💕 {loveCounter} loves!</p>
-      </div>
-      {/* Insert confetti effect element here */}
-      {/* Add romantic animations using CSS or libraries like Framer Motion */}
-    </div>
-  );
+    const handleRSVP = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        console.log('RSVP submitted:', Object.fromEntries(formData));
+        // Handle RSVP submission (e.g., send to server)
+    };
+
+    return (
+        <div className="invite-container">
+            <div className="3d-envelope-header">💌</div>
+            <h1>We Are Getting Married!</h1>
+            <div className="countdown">
+                <p>Time until wedding:</p>
+                <p>{timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s</p>
+            </div>
+            <div className="love-counter">
+                <button onClick={handleLoveClick}>❤️ {loves} Loves</button>
+            </div>
+            <div className="tabs">
+                <button>Wedding</button>
+                <button>Guests</button>
+                <button>Gallery</button>
+                <button>RSVP</button>
+            </div>
+            <div className="floating-hearts">
+                {/* Implement animation for floating hearts here */}
+            </div>
+            <form onSubmit={handleRSVP} className="rsvp-form">
+                <h2>RSVP</h2>
+                <input type="text" name="name" placeholder="Your Name" required />
+                <input type="email" name="email" placeholder="Your Email" required />
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    );
 };
 
 export default WeddingInvite;
