@@ -1,36 +1,30 @@
-import Envelope from "./components/Envelope";
-import Sparkles from "./components/Sparkles";
-import MusicPlayer from "./components/MusicPlayer";
-import Petals from "./components/Petals";
+  {/* cinematic triple parallax background */}
+  <div className="parallax-bg">
+    <div className="bg-layer layer1"></div>
+    <div className="bg-layer layer2"></div>
+  </div>
 
-export default function Home() {
-  return (
-    <main style={{ minHeight: "200vh", paddingTop: "40px" }}>
+  {/* drifting sparkles */}
+  <Sparkles />
 
-      {/* cinematic parallax background */}
-      <div className="parallax-bg">
-        <div className="bg-layer layer1"></div>
-        <div className="bg-layer layer2"></div>
-      </div>
+  {/* falling gold petals */}
+  <Petals />
 
-      {/* sparkles */}
-      <Sparkles />
+  {/* cursor gold dust trail */}
+  <CursorTrail />
 
-      {/* falling petals */}
-      <Petals />
+  {/* floating envelope */}
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      marginTop: "160px",
+      marginBottom: "200px",
+      position: "relative",
+      zIndex: 10
+    }}
+  >
+    <Envelope />
+  </div>
 
-      {/* ambient music */}
-      <MusicPlayer />
-
-      {/* centered content */}
-      <div style={{
-        display: "flex",
-        justifyContent: "center",
-        marginTop: "100px"
-      }}>
-        <Envelope />
-      </div>
-
-    </main>
-  );
-}
+</main>
