@@ -73,6 +73,22 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+/* ── Mauve Text Utility ── */
+.mauve-text {
+  background: linear-gradient(135deg, var(--mauve), var(--mauve-light), var(--mauve-medium));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Accent Text Utility (gold/brass) ── */
+.accent-text {
+  background: linear-gradient(135deg, var(--gold-accent), var(--gold-light), var(--gold-brass));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 /* ── Rustic Text Utility (for envelope) ── */
 .rustic-text {
   color: #FFF0F5;
@@ -85,11 +101,11 @@ body {
 .gold-shimmer {
   background: linear-gradient(
     90deg,
-    var(--sage) 0%,
-    var(--mauve-light) 25%,
-    var(--sage-light) 50%,
-    var(--mauve-light) 75%,
-    var(--sage) 100%
+    var(--gold-accent) 0%,
+    var(--gold-light) 25%,
+    var(--gold-brass) 50%,
+    var(--gold-light) 75%,
+    var(--gold-accent) 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -563,12 +579,39 @@ body {
   margin: 6px 0;
 }
 
+.royal-families {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin: 16px 0 4px;
+  letter-spacing: 1px;
+}
+
+.royal-reception {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--sage-light);
+  margin: 12px 0;
+}
+
+.royal-rsvp {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--mauve-light);
+  margin: 8px 0;
+}
+
 /* ── Scroll Hint ── */
 .scroll-hint {
   margin-top: 40px;
   text-align: center;
   animation: bounce 2s ease-in-out infinite;
-  color: var(--sage-light);
+  color: var(--mauve);
   opacity: 0.7;
 }
 
@@ -683,7 +726,7 @@ body {
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
   font-size: 1.15rem;
-  color: rgba(196, 160, 170, 0.75);
+  color: var(--mauve-light);
   margin-bottom: 20px;
   line-height: 1.6;
 }
@@ -691,7 +734,7 @@ body {
 .section-divider {
   width: 80px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--sage-medium), transparent);
+  background: linear-gradient(90deg, transparent, var(--gold-accent), transparent);
   margin: 20px auto;
 }
 
@@ -765,8 +808,8 @@ body {
 }
 
 .detail-item:hover {
-  border-color: rgba(91, 138, 94, 0.4);
-  box-shadow: 0 0 20px rgba(91, 138, 94, 0.08);
+  border-color: rgba(196, 160, 170, 0.4);
+  box-shadow: 0 0 20px rgba(196, 160, 170, 0.08);
 }
 
 .detail-icon {

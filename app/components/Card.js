@@ -21,14 +21,20 @@ export default function Card() {
         </span>
       </div>
 
+      <p className="royal-families">Together with their families</p>
+
       <div className="royal-divider"></div>
 
       <p className="royal-date">
-        Date: <span className="gold-text">TBA</span>
+        Date: <span className="mauve-text">TBA</span>
       </p>
       <p className="royal-venue">
-        Venue: <span className="gold-text">To Be Announced</span>
+        Venue: <span className="mauve-text">To Be Announced</span>
       </p>
+
+      <p className="royal-reception">Reception to follow</p>
+
+      <p className="royal-rsvp">Kindly RSVP</p>
 
       {/* decorative bottom flourish */}
       <div className="card-flourish bottom-flourish">❧</div>

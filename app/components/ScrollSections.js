@@ -131,22 +131,22 @@ export default function ScrollSections() {
             <div className="detail-item">
               <span className="detail-icon">📅</span>
               <h3>Date</h3>
-              <p className="gold-text">To Be Announced</p>
+              <p className="mauve-text">To Be Announced</p>
             </div>
             <div className="detail-item">
               <span className="detail-icon">📍</span>
               <h3>Venue</h3>
-              <p className="gold-text">To Be Announced</p>
+              <p className="mauve-text">To Be Announced</p>
             </div>
             <div className="detail-item">
               <span className="detail-icon">⏰</span>
               <h3>Time</h3>
-              <p className="gold-text">To Be Announced</p>
+              <p className="mauve-text">To Be Announced</p>
             </div>
             <div className="detail-item">
               <span className="detail-icon">👗</span>
               <h3>Dress Code</h3>
-              <p className="gold-text">Formal / Semi-Formal</p>
+              <p className="mauve-text">Formal / Semi-Formal</p>
             </div>
           </div>
         </div>
@@ -154,7 +154,7 @@ export default function ScrollSections() {
 
       {/* ───── FOOTER ───── */}
       <footer className="wedding-footer">
-        <p className="gold-text">With Love,</p>
+        <p className="mauve-text">With Love,</p>
         <h3 className="gold-shimmer">Jethro &amp; Francisca</h3>
         <p className="footer-note">We can&rsquo;t wait to celebrate with you ♥</p>
       </footer>
