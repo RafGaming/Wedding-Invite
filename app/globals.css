@@ -46,6 +46,12 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+/* ── Rustic Text Utility ── */
+.rustic-text {
+  color: #5c4033;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
 .gold-shimmer {
   background: linear-gradient(
     90deg,
@@ -113,6 +119,30 @@ body {
   align-items: center;
   min-height: 100vh;
   padding: 80px 20px;
+  overflow: hidden;
+}
+
+/* Botanical corner decorations on hero */
+.hero-section::before,
+.hero-section::after {
+  content: "🌿";
+  position: absolute;
+  font-size: 80px;
+  opacity: 0.18;
+  pointer-events: none;
+  filter: sepia(1) hue-rotate(10deg) brightness(0.7);
+}
+
+.hero-section::before {
+  top: 20px;
+  left: 20px;
+  transform: rotate(-30deg);
+}
+
+.hero-section::after {
+  bottom: 20px;
+  right: 20px;
+  transform: rotate(150deg);
 }
 
 /* ══════════════════════════════════════
@@ -127,45 +157,108 @@ body {
 
 .royal-envelope {
   position: relative;
-  width: 380px;
-  height: 260px;
+  width: 420px;
+  height: 380px;
   cursor: pointer;
   transform-style: preserve-3d;
   transition: transform 0.4s ease, filter 0.4s ease;
 }
 
+/* Twine string across middle */
+.royal-envelope::before {
+  content: "";
+  position: absolute;
+  top: 52%;
+  left: -5%;
+  width: 110%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #8b7355 5%,
+    #6b5335 50%,
+    #8b7355 95%,
+    transparent 100%
+  );
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Bow at center of twine */
+.royal-envelope::after {
+  content: "✿";
+  position: absolute;
+  top: calc(52% - 15px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 30px;
+  color: #7b6345;
+  z-index: 6;
+  pointer-events: none;
+  line-height: 1;
+}
+
 .royal-envelope:hover {
   transform: scale(1.06) rotateX(4deg);
-  filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.5));
+  filter: drop-shadow(0 0 30px rgba(139, 105, 20, 0.4));
 }
 
 .envelope-front {
   position: absolute;
   inset: 0;
-  background: linear-gradient(145deg, #fff8ec, #fdf0d5);
-  border-radius: 16px;
-  border: 4px solid var(--gold1);
-  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.9),
-    0 10px 22px var(--shadow-strong);
+  background: linear-gradient(
+      175deg,
+      #b8956a 0%,
+      #a07850 30%,
+      #96704a 60%,
+      #8a6540 100%
+    ),
+    repeating-linear-gradient(
+      87deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.03) 2px,
+      rgba(255, 255, 255, 0.03) 4px
+    ),
+    repeating-linear-gradient(
+      3deg,
+      transparent,
+      transparent 3px,
+      rgba(0, 0, 0, 0.02) 3px,
+      rgba(0, 0, 0, 0.02) 6px
+    );
+  border-radius: 8px;
+  border: 1px solid rgba(80, 50, 30, 0.3);
+  box-shadow: 0 2px 4px rgba(60, 35, 15, 0.4),
+    0 8px 20px rgba(60, 35, 15, 0.25), 0 20px 50px rgba(0, 0, 0, 0.2);
   z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Double-line decorative border on envelope front */
+.envelope-front::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px dashed rgba(139, 105, 20, 0.35);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
 .royal-open-text {
   font-family: "Great Vibes", cursive;
   font-size: 28px;
-  text-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
   letter-spacing: 1px;
 }
 
 .envelope-back {
   position: absolute;
   inset: 0;
-  background: linear-gradient(145deg, #fdf7ea, #f5ecd8);
-  border-radius: 16px;
-  border: 4px solid var(--gold1);
+  background: linear-gradient(175deg, #b8956a 0%, #a07850 50%, #8a6540 100%);
+  border-radius: 8px;
+  border: 1px solid rgba(80, 50, 30, 0.3);
   z-index: 1;
   box-shadow: 0 6px 20px var(--shadow-soft);
 }
@@ -174,19 +267,29 @@ body {
   position: absolute;
   top: 0;
   width: 100%;
-  height: 55%;
-  background: linear-gradient(180deg, #fff5d7, #e9d7a6);
+  height: 45%;
+  background: linear-gradient(180deg, #faf5ee, #f0e8d8);
   clip-path: polygon(0 0, 100% 0, 50% 85%);
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-  border-left: 4px solid var(--gold1);
-  border-right: 4px solid var(--gold1);
-  border-top: 4px solid var(--gold1);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border: none;
   transform-origin: top center;
   z-index: 3;
   transition: transform 0.9s cubic-bezier(0.17, 0.67, 0.46, 1.16);
-  box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.8),
-    0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Botanical decoration on flap */
+.envelope-flap::before {
+  content: "🌿";
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 44px;
+  filter: sepia(1) brightness(0.6);
+  opacity: 0.6;
+  pointer-events: none;
 }
 
 .is-opening .envelope-flap {
@@ -198,12 +301,12 @@ body {
   inset: -40px;
   background: radial-gradient(
     circle,
-    rgba(212, 175, 55, 0.55),
+    rgba(139, 105, 20, 0.25),
     transparent 70%
   );
   filter: blur(35px);
   z-index: 0;
-  opacity: 0.7;
+  opacity: 0.4;
   pointer-events: none;
 }
 
@@ -215,15 +318,15 @@ body {
   transform: translateX(-50%);
   width: 50px;
   height: 50px;
-  background: radial-gradient(circle, #c0392b, #922b21);
-  border-radius: 50%;
+  background: radial-gradient(circle, #8b6914, #6b4e12);
+  border-radius: 48% 52% 46% 54% / 50% 48% 52% 50%;
   z-index: 4;
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4),
     inset 0 -2px 6px rgba(0, 0, 0, 0.3);
-  border: 2px solid #e74c3c;
+  border: 1px solid rgba(180, 140, 60, 0.4);
 }
 
 .seal-text {
@@ -277,25 +380,46 @@ body {
     rgba(20, 20, 35, 0.95),
     rgba(10, 10, 20, 0.98)
   );
-  border: 3px solid var(--gold1);
+  border: 2px solid transparent;
+  border-image: linear-gradient(135deg, #8b6914, #b8956a, #8b6914) 1;
   border-radius: 24px;
   padding: 50px 40px;
   max-width: 520px;
   width: 90vw;
   text-align: center;
-  box-shadow: 0 0 60px rgba(212, 175, 55, 0.15),
+  box-shadow: 0 0 60px rgba(139, 105, 20, 0.12),
     0 20px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   overflow: hidden;
+}
+
+/* Inner dashed decorative border */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px dashed rgba(139, 105, 20, 0.3);
+  border-radius: 18px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ornamental corners */
 .corner {
   position: absolute;
-  width: 40px;
-  height: 40px;
-  border-color: var(--gold1);
+  width: 50px;
+  height: 50px;
+  border-color: #8b6914;
   border-style: solid;
-  opacity: 0.6;
+  opacity: 0.65;
+  z-index: 1;
+}
+
+.corner::before {
+  content: "✦";
+  position: absolute;
+  font-size: 10px;
+  color: #b8956a;
+  opacity: 0.8;
 }
 
 .corner.tl {
@@ -305,11 +429,22 @@ body {
   border-top-left-radius: 8px;
 }
 
+.corner.tl::before {
+  top: -6px;
+  left: -6px;
+}
+
 .corner.tr {
   top: 12px;
   right: 12px;
   border-width: 2px 2px 0 0;
   border-top-right-radius: 8px;
+}
+
+.corner.tr::before {
+  top: -6px;
+  right: -6px;
+  left: auto;
 }
 
 .corner.bl {
@@ -319,11 +454,24 @@ body {
   border-bottom-left-radius: 8px;
 }
 
+.corner.bl::before {
+  bottom: -6px;
+  left: -6px;
+  top: auto;
+}
+
 .corner.br {
   bottom: 12px;
   right: 12px;
   border-width: 0 2px 2px 0;
   border-bottom-right-radius: 8px;
+}
+
+.corner.br::before {
+  bottom: -6px;
+  right: -6px;
+  top: auto;
+  left: auto;
 }
 
 .card-flourish {
@@ -568,9 +716,9 @@ body {
   text-align: center;
   padding: 60px 40px;
   background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(139, 105, 20, 0.25);
   border-radius: 24px;
-  box-shadow: 0 0 40px rgba(212, 175, 55, 0.05);
+  box-shadow: 0 0 40px rgba(139, 105, 20, 0.06);
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 1s ease, transform 1s ease;
@@ -595,15 +743,15 @@ body {
 
 .detail-item {
   padding: 20px;
-  border: 1px solid rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(139, 105, 20, 0.15);
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.02);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .detail-item:hover {
-  border-color: rgba(212, 175, 55, 0.4);
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.08);
+  border-color: rgba(139, 105, 20, 0.4);
+  box-shadow: 0 0 20px rgba(139, 105, 20, 0.08);
 }
 
 .detail-icon {
@@ -737,8 +885,8 @@ body {
    ════════════��═════════════════════════ */
 @media (max-width: 768px) {
   .royal-envelope {
-    width: 300px;
-    height: 210px;
+    width: 340px;
+    height: 310px;
   }
 
   .royal-open-text {
@@ -773,8 +921,8 @@ body {
 
 @media (max-width: 480px) {
   .royal-envelope {
-    width: 260px;
-    height: 180px;
+    width: 280px;
+    height: 255px;
   }
 
   .royal-card-title {

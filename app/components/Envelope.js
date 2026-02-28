@@ -32,7 +32,7 @@ export default function Envelope() {
         >
           <div className="envelope-back"></div>
           <div className="envelope-front">
-            <span className="gold-text royal-open-text">
+            <span className="rustic-text royal-open-text">
               ✉ Open Invitation
             </span>
           </div>
