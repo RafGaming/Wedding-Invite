@@ -3,25 +3,26 @@ import { useState } from "react";
 import Card from "./Card";
 import "./animations.css";
 
-export default function Envelope() {
-  const [open, setOpen] = useState(false);
-  const [animating, setAnimating] = useState(false);
+export default function Envelope({ onOpen }) {
+  const [stage, setStage] = useState(0); // 0=sealed, 1=opening, 2=letter-rising, 3=card-revealed
+  const [cardRevealed, setCardRevealed] = useState(false);
 
   const handleOpen = () => {
-    if (open || animating) return;
-    setAnimating(true);
-    // Let the flap animation play, then reveal card
+    if (stage !== 0) return;
+    setStage(1); // seal breaks, flap opens
+    setTimeout(() => setStage(2), 600); // letter starts sliding out
     setTimeout(() => {
-      setOpen(true);
-      setAnimating(false);
-    }, 900);
+      setStage(3);
+      setCardRevealed(true);
+      if (onOpen) onOpen();
+    }, 2000); // full card revealed
   };
 
   return (
     <div className="envelope-wrapper">
-      {!open && (
+      {!cardRevealed && (
         <div
-          className={`royal-envelope float-up ${animating ? "is-opening" : ""}`}
+          className={`royal-envelope float-up stage-${stage}`}
           onClick={handleOpen}
           role="button"
           tabIndex={0}
@@ -30,14 +31,33 @@ export default function Envelope() {
             if (e.key === "Enter" || e.key === " ") handleOpen();
           }}
         >
-          <img src="/envelope.png" alt="Wedding invitation envelope" className="envelope-img" />
-          <span className="rustic-text royal-open-text">
-            ✉ Open Invitation
-          </span>
+          {/* Envelope body */}
+          <div className="envelope-back"></div>
+          {/* Letter behind front panel — slides upward on stage 2 */}
+          {stage >= 2 && (
+            <div className="envelope-letter">
+              <div className="letter-line delay-1">You Are Invited</div>
+              <div className="letter-line delay-2">Jethro &amp; Francisca</div>
+            </div>
+          )}
+          {/* Front face of envelope (acts as pocket for letter) */}
+          <div className="envelope-front">
+            <span className={`royal-open-text${stage > 0 ? " fade-out" : ""}`}>
+              ✉ Open Invitation
+            </span>
+          </div>
+          {/* Inner glow when opening */}
+          <div className="envelope-inner-glow"></div>
+          {/* Flap — triangle at top, animates away on open */}
+          <div className="envelope-flap"></div>
+          {/* Wax Seal */}
+          <div className={`envelope-seal${stage > 0 ? " seal-breaking" : ""}`}>
+            <span className="seal-text">J &amp; F</span>
+          </div>
         </div>
       )}
 
-      {open && (
+      {cardRevealed && (
         <div className="card-reveal">
           <Card />
           <div className="scroll-hint">
