@@ -1,34 +1,6 @@
-/* --------------------------------------------------------- ROYAL GOLD ENVELOPE — SUPER‑PREMIUM DESIGN ----------------------------------------------------------*/
-
-.envelope-wrapper { display: flex; justify-content: center; position: relative; perspective: 2000px; }
-
-/* MAIN ENVELOPE STRUCTURE */ .royal-envelope { position: relative; width: 380px; height: 260px; cursor: pointer; transform-style: preserve-3d; transition: transform 0.4s ease, filter 0.4s ease; perspective: 2000px; }
-
-.royal-envelope:hover { transform: scale(1.06) rotateX(4deg); filter: drop-shadow(0 0 25px rgba(212,175,55,0.5)); }
-
-/* ENVELOPE FRONT PANEL */ .envelope-front { position: absolute; inset: 0; background: #fff8ec url("/textures/paper.png"); background-size: cover; border-radius: 16px; border: 4px solid var(--gold1); box-shadow: inset 0 0 12px rgba(255,255,255,0.9), 0 10px 22px var(--shadow-strong); z-index: 2;
-
-display: flex; justify-content: center; align-items: center; }
-
-/* OPEN INVITATION TEXT */ .royal-open-text { font-size: 26px; text-shadow: 0 0 12px rgba(212,175,55,0.5); }
-
-/* BACK PANEL */ .envelope-back { position: absolute; inset: 0; background: #fdf7ea url("/textures/paper.png"); background-size: cover; border-radius: 16px; border: 4px solid var(--gold1); z-index: 1; box-shadow: 0 6px 20px var(--shadow-soft); }
-
-/* FLAP */ .envelope-flap { position: absolute; top: 0; width: 100%; height: 55%; background: linear-gradient(180deg, #fff5d7, #e9d7a6); clip-path: polygon(0 0, 100% 0, 50% 85%); border-top-left-radius: 16px; border-top-right-radius: 16px; border-left: 4px solid var(--gold1); border-right: 4px solid var(--gold1); border-top: 4px solid var(--gold1); border-bottom: none;
-
-transform-origin: top center; z-index: 3; transition: transform 0.9s cubic-bezier(.17,.67,.46,1.16); box-shadow: inset 0 0 18px rgba(255,255,255,0.8), 0 10px 20px rgba(0,0,0,0.2); }
-
-/* OPEN ON CLICK */ .royal-envelope:active .envelope-flap { transform: rotateX(165deg); }
-
-/* GOLD GLOW BEHIND ENVELOPE */ .envelope-glow { position: absolute; inset: -40px; background: radial-gradient(circle, rgba(212,175,55,0.55), transparent 70%); filter: blur(35px); z-index: 0; opacity: 0.7; pointer-events: none; }
-
-/* FLOAT-UP ANIMATION */ @keyframes floatUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
-
-.float-up { animation: floatUp 1.2s ease forwards; }
-
 /* --------------------------------------------------------- ROYAL GOLD‑FOIL INVITATION CARD ----------------------------------------------------------*/
 
-.royal-card { position: relative; width: 560px; padding: 55px 50px; background: #fffdf7 url("/textures/paper.png"); background-size: cover; border-radius: 22px; border: 3px solid var(--gold1); box-shadow: 0 10px 35px var(--shadow-strong), inset 0 0 25px rgba(255,255,255,0.85); text-align: center; z-index: 15; opacity: 0; animation: fadeSoft 1.2s ease forwards; }
+.royal-card { position: relative; width: 560px; padding: 55px 50px; background: #fffdf7; background-size: cover; border-radius: 22px; border: 3px solid var(--gold1); box-shadow: 0 10px 35px var(--shadow-strong), inset 0 0 25px rgba(255,255,255,0.85); text-align: center; z-index: 15; opacity: 0; animation: fadeSoft 1.2s ease forwards; }
 
 /* TITLE */ .royal-card-title { font-size: 44px; margin-bottom: 12px; text-shadow: 0 0 16px rgba(212,175,55,0.35); }
 
@@ -48,6 +20,6 @@ transform-origin: top center; z-index: 3; transition: transform 0.9s cubic-bezie
 
 /* DATE */ .royal-date { font-size: 20px; margin-top: 15px; }
 
-/* ORNAMENTAL CORNERS */ .corner { position: absolute; width: 38px; height: 38px; background: url("/sparkles/gold-sparkle.png"); background-size: cover; opacity: 0.75; }
+/* ORNAMENTAL CORNERS */ .corner { position: absolute; width: 38px; height: 38px; border-color: var(--gold1); border-style: solid; opacity: 0.6; }
 
-.tl { top: -20px; left: -20px; } .tr { top: -20px; right: -20px; } .bl { bottom: -20px; left: -20px; } .br { bottom: -20px; right: -20px; }
+.tl { top: -20px; left: -20px; border-width: 2px 0 0 2px; border-top-left-radius: 8px; } .tr { top: -20px; right: -20px; border-width: 2px 2px 0 0; border-top-right-radius: 8px; } .bl { bottom: -20px; left: -20px; border-width: 0 0 2px 2px; border-bottom-left-radius: 8px; } .br { bottom: -20px; right: -20px; border-width: 0 2px 2px 0; border-bottom-right-radius: 8px; }
