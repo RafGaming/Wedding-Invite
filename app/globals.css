@@ -36,6 +36,14 @@
   --dark-surface: var(--bg-surface);
 }
 
+/* ── Scroll Lock Utility ── */
+body.scroll-locked {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 /* ── Reset ── */
 *,
 *::before,

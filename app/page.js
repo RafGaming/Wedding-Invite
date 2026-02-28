@@ -11,17 +11,36 @@ export default function Home() {
   const [isOpened, setIsOpened] = useState(false);
 
   useEffect(() => {
-    if (!isOpened) {
-      document.body.style.overflow = "hidden";
-      document.documentElement.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
+    const SCROLL_KEYS = new Set([
+      "ArrowDown", "ArrowUp", " ",
+      "PageDown", "PageUp", "Home", "End",
+    ]);
+
+    const preventScroll = (e) => e.preventDefault();
+    const preventKeyScroll = (e) => {
+      if (SCROLL_KEYS.has(e.key)) e.preventDefault();
     };
+
+    if (!isOpened) {
+      const scrollY = window.scrollY;
+      document.body.classList.add("scroll-locked");
+      document.body.style.top = `-${scrollY}px`;
+
+      window.addEventListener("wheel", preventScroll, { passive: false });
+      window.addEventListener("touchmove", preventScroll, { passive: false });
+      window.addEventListener("keydown", preventKeyScroll);
+
+      return () => {
+        document.body.classList.remove("scroll-locked");
+        const savedTop = document.body.style.top;
+        document.body.style.top = "";
+        window.scrollTo(0, parseInt(savedTop || "0", 10) * -1);
+
+        window.removeEventListener("wheel", preventScroll);
+        window.removeEventListener("touchmove", preventScroll);
+        window.removeEventListener("keydown", preventKeyScroll);
+      };
+    }
   }, [isOpened]);
 
   return (
@@ -47,8 +66,8 @@ export default function Home() {
         <Envelope onOpen={() => setIsOpened(true)} />
       </section>
 
-      {/* scrollable bride & groom sections */}
-      <ScrollSections />
+      {/* scrollable bride & groom sections — rendered only after envelope is opened */}
+      {isOpened && <ScrollSections />}
     </main>
   );
 }
