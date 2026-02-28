@@ -6,18 +6,34 @@
 
 /* ── CSS Variables ── */
 :root {
-  --primary-green: #2E7D52;
-  --primary-green-light: #4CAF78;
-  --primary-green-dark: #1B5E3A;
-  --primary-pink: #E8A0BF;
-  --primary-pink-light: #F2C4D6;
-  --primary-pink-dark: #C77DA0;
-  --dark-bg: #0F1A14;
-  --dark-surface: #162119;
-  --cream: #FFF5F8;
-  --text-light: #E8E0D8;
+  /* New sage green / mauve pink / gold theme */
+  --sage: #7A9E7E;
+  --sage-medium: #5B8A5E;
+  --sage-deep: #3D6B41;
+  --sage-light: #A8C5AB;
+  --mauve: #C4A0AA;
+  --mauve-medium: #B8879A;
+  --mauve-deep: #A06B80;
+  --mauve-light: #DBBFC8;
+  --gold-accent: #C9A96E;
+  --gold-brass: #D4B87A;
+  --gold-light: #E8D5A8;
+  --bg-dark: #0E1A12;
+  --bg-surface: #15231A;
+  --cream: #F5F2EC;
+  --text-light: #EDE8E0;
+  --text-muted: #C8C0B5;
   --shadow-soft: rgba(0, 0, 0, 0.25);
   --shadow-strong: rgba(0, 0, 0, 0.5);
+  /* Legacy aliases — keeps existing CSS working */
+  --primary-green: var(--sage-medium);
+  --primary-green-light: var(--sage-light);
+  --primary-green-dark: var(--sage-deep);
+  --primary-pink: var(--mauve);
+  --primary-pink-light: var(--mauve-light);
+  --primary-pink-dark: var(--mauve-deep);
+  --dark-bg: var(--bg-dark);
+  --dark-surface: var(--bg-surface);
 }
 
 /* ── Reset ── */
@@ -43,7 +59,7 @@ body {
 
 /* ── Gold Text Utility ── */
 .gold-text {
-  background: linear-gradient(135deg, #2E7D52, #4CAF78, #2E7D52);
+  background: linear-gradient(135deg, var(--sage), var(--sage-light), var(--sage-medium));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -61,11 +77,11 @@ body {
 .gold-shimmer {
   background: linear-gradient(
     90deg,
-    #2E7D52 0%,
-    #E8A0BF 25%,
-    #4CAF78 50%,
-    #E8A0BF 75%,
-    #2E7D52 100%
+    var(--sage) 0%,
+    var(--mauve-light) 25%,
+    var(--sage-light) 50%,
+    var(--mauve-light) 75%,
+    var(--sage) 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -154,13 +170,13 @@ body {
 }
 
 /* ══════════════════════════════════════
-   ENVELOPE STYLES
+   3-STAGE CSS ENVELOPE
    ══════════════════════════════════════ */
 .envelope-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  perspective: 2000px;
+  perspective: 1200px;
   position: relative;
   z-index: 2;
 }
@@ -168,45 +184,206 @@ body {
 .royal-envelope {
   position: relative;
   width: 420px;
-  height: 380px;
+  height: 280px;
   cursor: pointer;
-  transform-style: preserve-3d;
-  transition: transform 0.4s ease;
+  overflow: visible;
 }
 
-.royal-envelope:hover {
-  transform: scale(1.08);
-  transition: transform 0.4s ease;
+.royal-envelope.stage-0 {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.envelope-img {
+.royal-envelope.stage-0:hover {
+  transform: scale(1.05) translateY(-6px);
+  box-shadow: 0 24px 60px rgba(201, 169, 110, 0.2);
+}
+
+/* Envelope back — main body */
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, var(--sage-medium), var(--sage-deep));
+  border-radius: 8px;
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+/* Letter — behind the front panel, slides up on stage 2 */
+.envelope-letter {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  top: 80px;
+  height: 180px;
+  background: linear-gradient(145deg, var(--cream), #f0ede5);
+  border-radius: 4px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  animation: letterSlide 1.4s ease-out forwards;
+}
+
+.letter-line {
+  font-family: "Great Vibes", cursive;
+  font-size: 20px;
+  color: var(--sage-deep);
+  opacity: 0;
+  animation: lineReveal 0.6s ease forwards;
+  text-align: center;
+}
+
+.letter-line.delay-1 { animation-delay: 0.3s; }
+.letter-line.delay-2 { animation-delay: 0.7s; }
+
+/* Front face of envelope — acts as pocket hiding letter bottom */
+.envelope-front {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, var(--sage) 0%, var(--sage-medium) 55%, var(--sage-deep) 100%);
+  border-radius: 8px;
+  z-index: 3;
+}
+
+/* Inner glow — appears when flap opens */
+.envelope-inner-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  background: radial-gradient(
+    ellipse at 50% 10%,
+    rgba(232, 213, 168, 0.45) 0%,
+    rgba(201, 169, 110, 0.2) 35%,
+    transparent 65%
+  );
+  opacity: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Flap — mauve pink triangle at the top */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
+  height: 58%;
+  background: linear-gradient(180deg, var(--mauve-medium), var(--mauve-deep));
+  clip-path: polygon(0 0, 100% 0, 50% 82%);
+  transform-origin: top center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  z-index: 5;
 }
 
+/* Open invitation text */
 .royal-open-text {
   font-family: "Great Vibes", cursive;
-  font-size: 26px;
+  font-size: 24px;
+  color: var(--gold-light);
   letter-spacing: 2px;
   position: absolute;
-  bottom: 20%;
+  bottom: 22%;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1;
+  z-index: 4;
   white-space: nowrap;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.4), 0 0 10px rgba(46, 125, 82, 0.3);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 12px rgba(201, 169, 110, 0.3);
 }
 
-.is-opening {
-  animation: envelopeFlip 0.9s ease-in-out forwards;
+/* Wax seal */
+.envelope-seal {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(50%);
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, var(--gold-light), var(--gold-accent), var(--gold-brass));
+  border: 2px solid rgba(201, 169, 110, 0.5);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5), 0 0 16px rgba(201, 169, 110, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 6;
 }
 
-@keyframes envelopeFlip {
-  0% { transform: rotateY(0deg) scale(1); }
-  50% { transform: rotateY(90deg) scale(1.05); }
-  100% { transform: rotateY(180deg) scale(1); opacity: 0; }
+.seal-text {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--sage-deep);
+  text-align: center;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Stage-based animations ── */
+
+/* Seal breaking */
+.seal-breaking {
+  animation: sealBreak 0.5s ease-in forwards;
+}
+
+@keyframes sealBreak {
+  0%   { transform: translateX(-50%) translateY(50%) rotate(0deg) scale(1); opacity: 1; }
+  50%  { transform: translateX(-50%) translateY(50%) rotate(180deg) scale(1.2); opacity: 0.5; }
+  100% { transform: translateX(-50%) translateY(50%) rotate(360deg) scale(0); opacity: 0; }
+}
+
+/* Flap folds away */
+.stage-1 .envelope-flap,
+.stage-2 .envelope-flap,
+.stage-3 .envelope-flap {
+  animation: flapOpen 0.8s ease-in-out forwards;
+}
+
+@keyframes flapOpen {
+  0%   { transform: scaleY(1); opacity: 1; }
+  60%  { opacity: 0.5; }
+  100% { transform: scaleY(0); opacity: 0; }
+}
+
+/* Text fades out */
+.fade-out {
+  animation: fadeOut 0.3s ease forwards;
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; }
+}
+
+/* Inner glow appears */
+.stage-1 .envelope-inner-glow,
+.stage-2 .envelope-inner-glow,
+.stage-3 .envelope-inner-glow {
+  animation: glowAppear 0.6s ease forwards;
+}
+
+@keyframes glowAppear {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Letter slides up and out of the envelope */
+@keyframes letterSlide {
+  0%   { transform: translateY(0); opacity: 0; }
+  20%  { opacity: 1; }
+  100% { transform: translateY(calc(-100% - 120px)); opacity: 1; }
+}
+
+/* Staggered text reveal on the letter */
+@keyframes lineReveal {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ── Float-up entrance animation ── */
@@ -250,17 +427,17 @@ body {
   position: relative;
   background: linear-gradient(
     145deg,
-    rgba(20, 35, 25, 0.95),
-    rgba(10, 20, 14, 0.98)
+    rgba(21, 35, 26, 0.97),
+    rgba(14, 26, 18, 0.99)
   );
-  border: 3px solid var(--primary-green);
+  border: 2px solid var(--sage-medium);
   border-radius: 24px;
   padding: 50px 40px;
   max-width: 520px;
   width: 90vw;
   text-align: center;
-  box-shadow: 0 0 60px rgba(46, 125, 82, 0.15),
-    0 20px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 60px rgba(91, 138, 94, 0.12),
+    0 20px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.04);
   overflow: hidden;
 }
 
@@ -304,8 +481,8 @@ body {
 
 .card-flourish {
   font-size: 32px;
-  color: var(--primary-green);
-  opacity: 0.5;
+  color: var(--gold-accent);
+  opacity: 0.8;
   line-height: 1;
 }
 
@@ -330,7 +507,7 @@ body {
   font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 4px;
-  color: #8FA69A;
+  color: var(--sage-light);
   margin: 8px 0 20px;
 }
 
@@ -351,8 +528,8 @@ body {
 .royal-and {
   font-family: "Great Vibes", cursive;
   font-size: 2rem;
-  color: var(--primary-pink);
-  opacity: 0.7;
+  color: var(--gold-accent);
+  opacity: 0.85;
 }
 
 .royal-divider {
@@ -361,7 +538,9 @@ body {
   background: linear-gradient(
     90deg,
     transparent,
-    var(--primary-green),
+    var(--sage-medium),
+    var(--gold-accent),
+    var(--sage-medium),
     transparent
   );
   margin: 24px auto;
@@ -372,7 +551,7 @@ body {
   font-family: "Josefin Sans", sans-serif;
   font-size: 1.1rem;
   letter-spacing: 2px;
-  color: #8FA69A;
+  color: var(--text-muted);
   margin: 6px 0;
 }
 
@@ -381,8 +560,8 @@ body {
   margin-top: 40px;
   text-align: center;
   animation: bounce 2s ease-in-out infinite;
-  color: var(--primary-green);
-  opacity: 0.6;
+  color: var(--sage-light);
+  opacity: 0.7;
 }
 
 .scroll-hint p {
@@ -496,7 +675,7 @@ body {
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
   font-size: 1.15rem;
-  color: rgba(232, 160, 191, 0.7);
+  color: rgba(196, 160, 170, 0.75);
   margin-bottom: 20px;
   line-height: 1.6;
 }
@@ -504,7 +683,7 @@ body {
 .section-divider {
   width: 80px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--primary-green), transparent);
+  background: linear-gradient(90deg, transparent, var(--sage-medium), transparent);
   margin: 20px auto;
 }
 
@@ -544,9 +723,9 @@ body {
   text-align: center;
   padding: 60px 40px;
   background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(46, 125, 82, 0.2);
+  border: 1px solid rgba(91, 138, 94, 0.2);
   border-radius: 24px;
-  box-shadow: 0 0 40px rgba(46, 125, 82, 0.05);
+  box-shadow: 0 0 40px rgba(91, 138, 94, 0.05);
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 1s ease, transform 1s ease;
@@ -571,15 +750,15 @@ body {
 
 .detail-item {
   padding: 20px;
-  border: 1px solid rgba(46, 125, 82, 0.1);
+  border: 1px solid rgba(91, 138, 94, 0.12);
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.02);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .detail-item:hover {
-  border-color: rgba(46, 125, 82, 0.4);
-  box-shadow: 0 0 20px rgba(46, 125, 82, 0.08);
+  border-color: rgba(91, 138, 94, 0.4);
+  box-shadow: 0 0 20px rgba(91, 138, 94, 0.08);
 }
 
 .detail-icon {
@@ -593,7 +772,7 @@ body {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 3px;
-  color: #8FA69A;
+  color: var(--text-muted);
   margin-bottom: 8px;
 }
 
@@ -627,7 +806,7 @@ body {
 
 .footer-note {
   margin-top: 12px;
-  color: #6B8F7B;
+  color: var(--text-muted);
   font-size: 0.9rem;
 }
 
@@ -689,12 +868,12 @@ body {
   position: fixed;
   width: 6px;
   height: 6px;
-  background: var(--primary-green);
+  background: var(--sage);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
   animation: cursorFade 0.7s ease-out forwards;
-  box-shadow: 0 0 6px rgba(46, 125, 82, 0.6);
+  box-shadow: 0 0 6px rgba(122, 158, 126, 0.6);
 }
 
 @keyframes cursorFade {
@@ -714,7 +893,7 @@ body {
 @media (max-width: 768px) {
   .royal-envelope {
     width: 340px;
-    height: 310px;
+    height: 227px;
   }
 
   .royal-open-text {
@@ -750,7 +929,7 @@ body {
 @media (max-width: 480px) {
   .royal-envelope {
     width: 280px;
-    height: 255px;
+    height: 187px;
   }
 
   .royal-open-text {

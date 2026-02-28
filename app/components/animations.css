@@ -1,8 +1,8 @@
-/* --------------------------------------------------------- ROYAL GREEN & PINK INVITATION CARD ----------------------------------------------------------*/
+/* --------------------------------------------------------- SAGE GREEN & MAUVE PINK INVITATION CARD ----------------------------------------------------------*/
 
-.royal-card { position: relative; width: 560px; padding: 55px 50px; background: #fffdf7; background-size: cover; border-radius: 22px; border: 3px solid var(--primary-green); box-shadow: 0 10px 35px var(--shadow-strong), inset 0 0 25px rgba(255,255,255,0.85); text-align: center; z-index: 15; opacity: 0; animation: fadeSoft 1.2s ease forwards; }
+.royal-card { position: relative; width: 560px; padding: 55px 50px; background: #fffdf7; background-size: cover; border-radius: 22px; border: 3px solid var(--sage-medium); box-shadow: 0 10px 35px var(--shadow-strong), inset 0 0 25px rgba(255,255,255,0.85); text-align: center; z-index: 15; opacity: 0; animation: fadeSoft 1.2s ease forwards; }
 
-/* TITLE */ .royal-card-title { font-size: 44px; margin-bottom: 12px; text-shadow: 0 0 16px rgba(46,125,82,0.35); }
+/* TITLE */ .royal-card-title { font-size: 44px; margin-bottom: 12px; text-shadow: 0 0 16px rgba(91,138,94,0.35); }
 
 /* SUBTITLE */ .royal-sub { font-size: 20px; margin-bottom: 34px; }
 
@@ -10,16 +10,16 @@
 
 .royal-name { font-size: 34px; display: block; margin: 5px 0; font-family: "Georgia", serif; }
 
-/* scripted ampersand */ .royal-and { font-size: 32px; margin: 6px 0; font-family: "Great Vibes", cursive; color: var(--primary-pink); }
+/* scripted ampersand */ .royal-and { font-size: 32px; margin: 6px 0; font-family: "Great Vibes", cursive; color: var(--gold-accent); }
 
-/* GREEN/PINK SHIMMER EFFECT */ .gold-shimmer { background: linear-gradient( to right, #2E7D52 20%, #E8A0BF 40%, #4CAF78 60%, #2E7D52 80% ); -webkit-background-clip: text; color: transparent; animation: shimmerMove 4s linear infinite; }
+/* SAGE/MAUVE SHIMMER EFFECT */ .gold-shimmer { background: linear-gradient( to right, var(--sage) 20%, var(--mauve-light) 40%, var(--sage-light) 60%, var(--sage) 80% ); -webkit-background-clip: text; color: transparent; animation: shimmerMove 4s linear infinite; background-size: 200% auto; }
 
 @keyframes shimmerMove { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
 
-/* GREEN DIVIDER */ .royal-divider { width: 80%; height: 3px; margin: 25px auto; background: linear-gradient(90deg, transparent, var(--primary-green), transparent); }
+/* SAGE DIVIDER */ .royal-divider { width: 80%; height: 3px; margin: 25px auto; background: linear-gradient(90deg, transparent, var(--sage-medium), var(--gold-accent), var(--sage-medium), transparent); }
 
 /* DATE */ .royal-date { font-size: 20px; margin-top: 15px; }
 
-/* ORNAMENTAL CORNERS */ .corner { position: absolute; width: 38px; height: 38px; border-color: var(--primary-green); border-style: solid; opacity: 0.6; }
+/* ORNAMENTAL CORNERS */ .corner { position: absolute; width: 38px; height: 38px; border-color: var(--sage-medium); border-style: solid; opacity: 0.6; }
 
 .tl { top: -20px; left: -20px; border-width: 2px 0 0 2px; border-top-left-radius: 8px; } .tr { top: -20px; right: -20px; border-width: 2px 2px 0 0; border-top-right-radius: 8px; } .bl { bottom: -20px; left: -20px; border-width: 0 0 2px 2px; border-bottom-left-radius: 8px; } .br { bottom: -20px; right: -20px; border-width: 0 2px 2px 0; border-bottom-right-radius: 8px; }
