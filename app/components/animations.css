@@ -1,8 +1,8 @@
-/* --------------------------------------------------------- ROYAL GOLD‑FOIL INVITATION CARD ----------------------------------------------------------*/
+/* --------------------------------------------------------- ROYAL GREEN & PINK INVITATION CARD ----------------------------------------------------------*/
 
-.royal-card { position: relative; width: 560px; padding: 55px 50px; background: #fffdf7; background-size: cover; border-radius: 22px; border: 3px solid var(--gold1); box-shadow: 0 10px 35px var(--shadow-strong), inset 0 0 25px rgba(255,255,255,0.85); text-align: center; z-index: 15; opacity: 0; animation: fadeSoft 1.2s ease forwards; }
+.royal-card { position: relative; width: 560px; padding: 55px 50px; background: #fffdf7; background-size: cover; border-radius: 22px; border: 3px solid var(--primary-green); box-shadow: 0 10px 35px var(--shadow-strong), inset 0 0 25px rgba(255,255,255,0.85); text-align: center; z-index: 15; opacity: 0; animation: fadeSoft 1.2s ease forwards; }
 
-/* TITLE */ .royal-card-title { font-size: 44px; margin-bottom: 12px; text-shadow: 0 0 16px rgba(212,175,55,0.35); }
+/* TITLE */ .royal-card-title { font-size: 44px; margin-bottom: 12px; text-shadow: 0 0 16px rgba(46,125,82,0.35); }
 
 /* SUBTITLE */ .royal-sub { font-size: 20px; margin-bottom: 34px; }
 
@@ -10,16 +10,16 @@
 
 .royal-name { font-size: 34px; display: block; margin: 5px 0; font-family: "Georgia", serif; }
 
-/* scripted ampersand */ .royal-and { font-size: 32px; margin: 6px 0; font-family: "Great Vibes", cursive; color: var(--gold1); }
+/* scripted ampersand */ .royal-and { font-size: 32px; margin: 6px 0; font-family: "Great Vibes", cursive; color: var(--primary-pink); }
 
-/* GOLD SHIMMER EFFECT */ .gold-shimmer { background: linear-gradient( to right, #cfa73c 20%, #f5e7b5 40%, #e1c067 60%, #cfa73c 80% ); -webkit-background-clip: text; color: transparent; animation: shimmerMove 4s linear infinite; }
+/* GREEN/PINK SHIMMER EFFECT */ .gold-shimmer { background: linear-gradient( to right, #2E7D52 20%, #E8A0BF 40%, #4CAF78 60%, #2E7D52 80% ); -webkit-background-clip: text; color: transparent; animation: shimmerMove 4s linear infinite; }
 
 @keyframes shimmerMove { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
 
-/* GOLD DIVIDER */ .royal-divider { width: 80%; height: 3px; margin: 25px auto; background: linear-gradient(90deg, transparent, var(--gold1), transparent); }
+/* GREEN DIVIDER */ .royal-divider { width: 80%; height: 3px; margin: 25px auto; background: linear-gradient(90deg, transparent, var(--primary-green), transparent); }
 
 /* DATE */ .royal-date { font-size: 20px; margin-top: 15px; }
 
-/* ORNAMENTAL CORNERS */ .corner { position: absolute; width: 38px; height: 38px; border-color: var(--gold1); border-style: solid; opacity: 0.6; }
+/* ORNAMENTAL CORNERS */ .corner { position: absolute; width: 38px; height: 38px; border-color: var(--primary-green); border-style: solid; opacity: 0.6; }
 
 .tl { top: -20px; left: -20px; border-width: 2px 0 0 2px; border-top-left-radius: 8px; } .tr { top: -20px; right: -20px; border-width: 2px 2px 0 0; border-top-right-radius: 8px; } .bl { bottom: -20px; left: -20px; border-width: 0 0 2px 2px; border-bottom-left-radius: 8px; } .br { bottom: -20px; right: -20px; border-width: 0 2px 2px 0; border-bottom-right-radius: 8px; }

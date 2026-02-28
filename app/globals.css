@@ -6,20 +6,18 @@
 
 /* ── CSS Variables ── */
 :root {
-  --gold1: #d4af37;
-  --gold2: #c9982a;
-  --gold-light: #f5e6a3;
-  --dark-bg: #0a0a14;
-  --dark-surface: #12121e;
-  --cream: #fdf8ee;
-  --text-light: #e8e0d0;
+  --primary-green: #2E7D52;
+  --primary-green-light: #4CAF78;
+  --primary-green-dark: #1B5E3A;
+  --primary-pink: #E8A0BF;
+  --primary-pink-light: #F2C4D6;
+  --primary-pink-dark: #C77DA0;
+  --dark-bg: #0F1A14;
+  --dark-surface: #162119;
+  --cream: #FFF5F8;
+  --text-light: #E8E0D8;
   --shadow-soft: rgba(0, 0, 0, 0.25);
   --shadow-strong: rgba(0, 0, 0, 0.5);
-  --kraft-brown: #a07850;
-  --kraft-light: #b8956a;
-  --kraft-dark: #8a6540;
-  --twine: #7B6345;
-  --rustic-seal: #8B6914;
 }
 
 /* ── Reset ── */
@@ -45,7 +43,7 @@ body {
 
 /* ── Gold Text Utility ── */
 .gold-text {
-  background: linear-gradient(135deg, #d4af37, #f5e6a3, #c9982a);
+  background: linear-gradient(135deg, #2E7D52, #4CAF78, #2E7D52);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -53,8 +51,8 @@ body {
 
 /* ── Rustic Text Utility (for envelope) ── */
 .rustic-text {
-  color: #faf5ee;
-  -webkit-text-fill-color: #faf5ee;
+  color: #FFF0F5;
+  -webkit-text-fill-color: #FFF0F5;
   background: none;
   -webkit-background-clip: unset;
   background-clip: unset;
@@ -63,11 +61,11 @@ body {
 .gold-shimmer {
   background: linear-gradient(
     90deg,
-    #d4af37 0%,
-    #f5e6a3 25%,
-    #d4af37 50%,
-    #f5e6a3 75%,
-    #d4af37 100%
+    #2E7D52 0%,
+    #E8A0BF 25%,
+    #4CAF78 50%,
+    #E8A0BF 75%,
+    #2E7D52 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -103,7 +101,7 @@ body {
 .layer1 {
   background: radial-gradient(
     ellipse at 30% 20%,
-    rgba(212, 175, 55, 0.08),
+    rgba(46, 125, 82, 0.08),
     transparent 60%
   );
 }
@@ -111,7 +109,7 @@ body {
 .layer2 {
   background: radial-gradient(
     ellipse at 70% 80%,
-    rgba(139, 71, 137, 0.06),
+    rgba(232, 160, 191, 0.06),
     transparent 60%
   );
 }
@@ -198,7 +196,7 @@ body {
   transform: translateX(-50%);
   z-index: 1;
   white-space: nowrap;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.4), 0 0 10px rgba(139, 105, 20, 0.3);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4), 0 0 10px rgba(46, 125, 82, 0.3);
 }
 
 .is-opening {
@@ -252,16 +250,16 @@ body {
   position: relative;
   background: linear-gradient(
     145deg,
-    rgba(20, 20, 35, 0.95),
-    rgba(10, 10, 20, 0.98)
+    rgba(20, 35, 25, 0.95),
+    rgba(10, 20, 14, 0.98)
   );
-  border: 3px solid var(--gold1);
+  border: 3px solid var(--primary-green);
   border-radius: 24px;
   padding: 50px 40px;
   max-width: 520px;
   width: 90vw;
   text-align: center;
-  box-shadow: 0 0 60px rgba(212, 175, 55, 0.15),
+  box-shadow: 0 0 60px rgba(46, 125, 82, 0.15),
     0 20px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   overflow: hidden;
 }
@@ -271,7 +269,7 @@ body {
   position: absolute;
   width: 40px;
   height: 40px;
-  border-color: var(--gold1);
+  border-color: var(--primary-green);
   border-style: solid;
   opacity: 0.6;
 }
@@ -306,7 +304,7 @@ body {
 
 .card-flourish {
   font-size: 32px;
-  color: var(--gold1);
+  color: var(--primary-green);
   opacity: 0.5;
   line-height: 1;
 }
@@ -332,7 +330,7 @@ body {
   font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 4px;
-  color: #a09880;
+  color: #8FA69A;
   margin: 8px 0 20px;
 }
 
@@ -353,7 +351,7 @@ body {
 .royal-and {
   font-family: "Great Vibes", cursive;
   font-size: 2rem;
-  color: var(--gold1);
+  color: var(--primary-pink);
   opacity: 0.7;
 }
 
@@ -363,7 +361,7 @@ body {
   background: linear-gradient(
     90deg,
     transparent,
-    var(--gold1),
+    var(--primary-green),
     transparent
   );
   margin: 24px auto;
@@ -374,7 +372,7 @@ body {
   font-family: "Josefin Sans", sans-serif;
   font-size: 1.1rem;
   letter-spacing: 2px;
-  color: #b0a890;
+  color: #8FA69A;
   margin: 6px 0;
 }
 
@@ -383,7 +381,7 @@ body {
   margin-top: 40px;
   text-align: center;
   animation: bounce 2s ease-in-out infinite;
-  color: var(--gold1);
+  color: var(--primary-green);
   opacity: 0.6;
 }
 
@@ -448,10 +446,10 @@ body {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(10, 10, 20, 0.7) 0%,
-    rgba(10, 10, 20, 0.3) 40%,
-    rgba(10, 10, 20, 0.3) 60%,
-    rgba(10, 10, 20, 0.7) 100%
+    rgba(15, 26, 20, 0.7) 0%,
+    rgba(15, 26, 20, 0.3) 40%,
+    rgba(15, 26, 20, 0.3) 60%,
+    rgba(15, 26, 20, 0.7) 100%
   );
   z-index: 1;
 }
@@ -498,7 +496,7 @@ body {
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
   font-size: 1.15rem;
-  color: rgba(245, 230, 163, 0.7);
+  color: rgba(232, 160, 191, 0.7);
   margin-bottom: 20px;
   line-height: 1.6;
 }
@@ -506,7 +504,7 @@ body {
 .section-divider {
   width: 80px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold1), transparent);
+  background: linear-gradient(90deg, transparent, var(--primary-green), transparent);
   margin: 20px auto;
 }
 
@@ -546,9 +544,9 @@ body {
   text-align: center;
   padding: 60px 40px;
   background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(46, 125, 82, 0.2);
   border-radius: 24px;
-  box-shadow: 0 0 40px rgba(212, 175, 55, 0.05);
+  box-shadow: 0 0 40px rgba(46, 125, 82, 0.05);
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 1s ease, transform 1s ease;
@@ -573,15 +571,15 @@ body {
 
 .detail-item {
   padding: 20px;
-  border: 1px solid rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(46, 125, 82, 0.1);
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.02);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .detail-item:hover {
-  border-color: rgba(212, 175, 55, 0.4);
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.08);
+  border-color: rgba(46, 125, 82, 0.4);
+  box-shadow: 0 0 20px rgba(46, 125, 82, 0.08);
 }
 
 .detail-icon {
@@ -595,7 +593,7 @@ body {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 3px;
-  color: #a09880;
+  color: #8FA69A;
   margin-bottom: 8px;
 }
 
@@ -629,7 +627,7 @@ body {
 
 .footer-note {
   margin-top: 12px;
-  color: #807060;
+  color: #6B8F7B;
   font-size: 0.9rem;
 }
 
@@ -691,12 +689,12 @@ body {
   position: fixed;
   width: 6px;
   height: 6px;
-  background: var(--gold1);
+  background: var(--primary-green);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
   animation: cursorFade 0.7s ease-out forwards;
-  box-shadow: 0 0 6px rgba(212, 175, 55, 0.6);
+  box-shadow: 0 0 6px rgba(46, 125, 82, 0.6);
 }
 
 @keyframes cursorFade {
