@@ -194,7 +194,7 @@ body {
 }
 
 /* ══════════════════════════════════════
-   3-STAGE CSS ENVELOPE
+   IMAGE-BASED ENVELOPE
    ══════════════════════════════════════ */
 .envelope-wrapper {
   display: flex;
@@ -207,105 +207,25 @@ body {
 
 .royal-envelope {
   position: relative;
-  width: 420px;
-  height: 280px;
+  max-width: 420px;
+  width: 100%;
   cursor: pointer;
-  overflow: visible;
-}
-
-.royal-envelope.stage-0 {
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.royal-envelope.stage-0:hover {
+.royal-envelope:hover {
   transform: scale(1.05) translateY(-6px);
   box-shadow: 0 24px 60px rgba(201, 169, 110, 0.2);
 }
 
-/* Envelope back — main body */
-.envelope-back {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(160deg, var(--sage-medium), var(--sage-deep));
-  border-radius: 8px;
-  border: 1px solid rgba(201, 169, 110, 0.25);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  z-index: 1;
-}
-
-/* Letter — behind the front panel, slides up on stage 2 */
-.envelope-letter {
-  position: absolute;
-  left: 24px;
-  right: 24px;
-  top: 80px;
-  height: 180px;
-  background: linear-gradient(145deg, var(--cream), #f0ede5);
-  border-radius: 4px;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  animation: letterSlide 1.4s ease-out forwards;
-}
-
-.letter-line {
-  font-family: "Great Vibes", cursive;
-  font-size: 20px;
-  color: var(--sage-deep);
-  opacity: 0;
-  animation: lineReveal 0.6s ease forwards;
-  text-align: center;
-}
-
-.letter-line.delay-1 { animation-delay: 0.3s; }
-.letter-line.delay-2 { animation-delay: 0.7s; }
-
-/* Front face of envelope — acts as pocket hiding letter bottom */
-.envelope-front {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(160deg, var(--sage) 0%, var(--sage-medium) 55%, var(--sage-deep) 100%);
-  border-radius: 8px;
-  z-index: 3;
-}
-
-/* Inner glow — appears when flap opens */
-.envelope-inner-glow {
-  position: absolute;
-  inset: 0;
-  border-radius: 8px;
-  background: radial-gradient(
-    ellipse at 50% 10%,
-    rgba(232, 213, 168, 0.45) 0%,
-    rgba(201, 169, 110, 0.2) 35%,
-    transparent 65%
-  );
-  opacity: 0;
-  z-index: 4;
-  pointer-events: none;
-}
-
-/* Flap — mauve pink triangle at the top */
-.envelope-flap {
-  position: absolute;
-  top: 0;
-  left: 0;
+.envelope-image {
   width: 100%;
-  height: 58%;
-  background: linear-gradient(180deg, var(--mauve-medium), var(--mauve-deep));
-  clip-path: polygon(0 0, 100% 0, 50% 82%);
-  transform-origin: top center;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  z-index: 5;
+  height: auto;
+  display: block;
+  border-radius: 8px;
 }
 
-/* Open invitation text */
+/* Open invitation text overlay */
 .royal-open-text {
   font-family: "Great Vibes", cursive;
   font-size: 24px;
@@ -318,96 +238,19 @@ body {
   z-index: 4;
   white-space: nowrap;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 12px rgba(201, 169, 110, 0.3);
-}
-
-/* Wax seal */
-.envelope-seal {
-  position: absolute;
-  bottom: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(50%);
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, var(--gold-light), var(--gold-accent), var(--gold-brass));
-  border: 2px solid rgba(201, 169, 110, 0.5);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5), 0 0 16px rgba(201, 169, 110, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 6;
-}
-
-.seal-text {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--sage-deep);
-  text-align: center;
-  letter-spacing: 0.5px;
-  line-height: 1.2;
   pointer-events: none;
-  user-select: none;
 }
 
-/* ── Stage-based animations ── */
-
-/* Seal breaking */
-.seal-breaking {
-  animation: sealBreak 0.5s ease-in forwards;
+/* Envelope opening animation */
+.envelope-opening {
+  animation: envelopeOpen 0.9s ease-in-out forwards;
+  pointer-events: none;
 }
 
-@keyframes sealBreak {
-  0%   { transform: translateX(-50%) translateY(50%) rotate(0deg) scale(1); opacity: 1; }
-  50%  { transform: translateX(-50%) translateY(50%) rotate(180deg) scale(1.2); opacity: 0.5; }
-  100% { transform: translateX(-50%) translateY(50%) rotate(360deg) scale(0); opacity: 0; }
-}
-
-/* Flap folds away */
-.stage-1 .envelope-flap,
-.stage-2 .envelope-flap,
-.stage-3 .envelope-flap {
-  animation: flapOpen 0.8s ease-in-out forwards;
-}
-
-@keyframes flapOpen {
-  0%   { transform: scaleY(1); opacity: 1; }
-  60%  { opacity: 0.5; }
-  100% { transform: scaleY(0); opacity: 0; }
-}
-
-/* Text fades out */
-.fade-out {
-  animation: fadeOut 0.3s ease forwards;
-}
-
-@keyframes fadeOut {
-  to { opacity: 0; }
-}
-
-/* Inner glow appears */
-.stage-1 .envelope-inner-glow,
-.stage-2 .envelope-inner-glow,
-.stage-3 .envelope-inner-glow {
-  animation: glowAppear 0.6s ease forwards;
-}
-
-@keyframes glowAppear {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-/* Letter slides up and out of the envelope */
-@keyframes letterSlide {
-  0%   { transform: translateY(0); opacity: 0; }
-  20%  { opacity: 1; }
-  100% { transform: translateY(calc(-100% - 120px)); opacity: 1; }
-}
-
-/* Staggered text reveal on the letter */
-@keyframes lineReveal {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
+@keyframes envelopeOpen {
+  0%   { transform: scale(1) rotateY(0deg); opacity: 1; }
+  50%  { transform: scale(1.08) rotateY(20deg); opacity: 0.8; }
+  100% { transform: scale(0.6) rotateY(90deg); opacity: 0; }
 }
 
 /* ── Float-up entrance animation ── */
@@ -943,8 +786,7 @@ body {
    ════════════��═════════════════════════ */
 @media (max-width: 768px) {
   .royal-envelope {
-    width: 340px;
-    height: 227px;
+    max-width: 340px;
   }
 
   .royal-open-text {
@@ -979,8 +821,7 @@ body {
 
 @media (max-width: 480px) {
   .royal-envelope {
-    width: 280px;
-    height: 187px;
+    max-width: 280px;
   }
 
   .royal-open-text {
