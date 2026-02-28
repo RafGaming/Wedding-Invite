@@ -151,6 +151,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-bottom: 50px;
 }
 
 .royal-open-text {
@@ -741,6 +742,10 @@ body {
     height: 210px;
   }
 
+  .envelope-front {
+    padding-bottom: 40px;
+  }
+
   .royal-open-text {
     font-size: 22px;
   }
@@ -775,6 +780,10 @@ body {
   .royal-envelope {
     width: 260px;
     height: 180px;
+  }
+
+  .envelope-front {
+    padding-bottom: 30px;
   }
 
   .royal-card-title {
