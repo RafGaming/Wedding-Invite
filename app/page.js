@@ -22,6 +22,10 @@ export default function Home() {
 
       {/* hero section — floating envelope */}
       <section className="hero-section">
+        <div className="photo-bg">
+          <img src="/bg.jpg" alt="Wedding background" className="section-photo" />
+          <div className="photo-blur-overlay"></div>
+        </div>
         <Envelope />
       </section>
 

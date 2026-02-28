@@ -30,17 +30,10 @@ export default function Envelope() {
             if (e.key === "Enter" || e.key === " ") handleOpen();
           }}
         >
-          <div className="envelope-back"></div>
-          <div className="envelope-front">
-            <span className="rustic-text royal-open-text">
-              ✉ Open Invitation
-            </span>
-          </div>
-          <div className="envelope-flap"></div>
-          <div className="envelope-glow"></div>
-          <div className="envelope-seal">
-            <span className="seal-text">J & F</span>
-          </div>
+          <img src="/envelope.png" alt="Wedding invitation envelope" className="envelope-img" />
+          <span className="rustic-text royal-open-text">
+            ✉ Open Invitation
+          </span>
         </div>
       )}
 
