@@ -3,24 +3,27 @@ import { useState } from "react";
 import Card from "./Card";
 import "./animations.css";
 
+const SHRINK_DURATION_MS = 700;
+const GROW_DURATION_MS = 800;
+
 export default function Envelope({ onOpen }) {
-  const [opening, setOpening] = useState(false);
-  const [cardRevealed, setCardRevealed] = useState(false);
+  const [phase, setPhase] = useState("sealed"); // sealed, shrinking, revealing, done
 
   const handleOpen = () => {
-    if (opening || cardRevealed) return;
-    setOpening(true);
+    if (phase !== "sealed") return;
+    setPhase("shrinking");
+    setTimeout(() => setPhase("revealing"), SHRINK_DURATION_MS);
     setTimeout(() => {
-      setCardRevealed(true);
+      setPhase("done");
       if (onOpen) onOpen();
-    }, 900);
+    }, SHRINK_DURATION_MS + GROW_DURATION_MS);
   };
 
   return (
     <div className="envelope-wrapper">
-      {!cardRevealed && (
+      {(phase === "sealed" || phase === "shrinking") && (
         <div
-          className={`royal-envelope float-up${opening ? " envelope-opening" : ""}`}
+          className={`royal-envelope float-up${phase === "shrinking" ? " envelope-shrinking" : ""}`}
           onClick={handleOpen}
           role="button"
           tabIndex={0}
@@ -30,13 +33,13 @@ export default function Envelope({ onOpen }) {
           }}
         >
           <img src="/envelope.png" alt="Wedding envelope" className="envelope-image" />
-          {!opening && (
+          {phase === "sealed" && (
             <span className="royal-open-text">✉ Open Invitation</span>
           )}
         </div>
       )}
 
-      {cardRevealed && (
+      {(phase === "revealing" || phase === "done") && (
         <div className="card-reveal">
           <Card />
           <div className="scroll-hint">
