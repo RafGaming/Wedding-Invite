@@ -1,14 +1,11 @@
 "use client";
 import { useState } from "react";
 
-const MEAL_OPTIONS = ["Chicken", "Fish", "Vegetarian"];
-
 export default function RSVPForm() {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
     name: "",
     guests: "1",
-    meal: "Chicken",
     wishes: "",
   });
 
@@ -71,25 +68,6 @@ export default function RSVPForm() {
                   </option>
                 ))}
               </select>
-            </div>
-
-            <div className="rsvp-field">
-              <span className="rsvp-label">Meal Preference</span>
-              <div className="rsvp-radio-group">
-                {MEAL_OPTIONS.map((opt) => (
-                  <label key={opt} className="rsvp-radio-label">
-                    <input
-                      type="radio"
-                      name="meal"
-                      value={opt}
-                      checked={form.meal === opt}
-                      onChange={handleChange}
-                      className="rsvp-radio"
-                    />
-                    <span>{opt}</span>
-                  </label>
-                ))}
-              </div>
             </div>
 
             <div className="rsvp-field">
