@@ -140,7 +140,7 @@ export default function ScrollSections() {
       <Gallery />
 
       {/* ───── COUNTDOWN & DETAILS ───── */}
-      <Countdown />
+      <Countdown ref={addRef} />
       <section
         className="details-section scroll-reveal"
         ref={addRef}
