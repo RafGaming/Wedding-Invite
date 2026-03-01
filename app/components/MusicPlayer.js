@@ -9,12 +9,12 @@ export default function MusicPlayer() {
   const audioRef = useRef(null);
   const fadeRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [started, setStarted] = useState(false);
 
   const fadeIn = useCallback((audio) => {
     if (fadeRef.current) clearInterval(fadeRef.current);
     audio.volume = 0;
     audio.play().catch(() => {});
+    setIsPlaying(true);
     const step = TARGET_VOLUME / FADE_STEPS;
     const interval = FADE_DURATION_MS / FADE_STEPS;
     fadeRef.current = setInterval(() => {
@@ -34,20 +34,18 @@ export default function MusicPlayer() {
       if (next <= 0) {
         clearInterval(fadeRef.current);
         audio.pause();
+        setIsPlaying(false);
       }
     }, interval);
   }, []);
 
+  // Auto-play with fade-in on first user click (e.g. opening envelope)
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
     const playAudio = () => {
-      if (!started) {
-        setStarted(true);
-        setIsPlaying(true);
-        fadeIn(audio);
-      }
+      fadeIn(audio);
     };
 
     document.addEventListener("click", playAudio, { once: true });
@@ -56,17 +54,15 @@ export default function MusicPlayer() {
       document.removeEventListener("click", playAudio);
       if (fadeRef.current) clearInterval(fadeRef.current);
     };
-  }, [fadeIn, started]);
+  }, [fadeIn]);
 
+  // Toggle button for manual control
   const handleToggle = () => {
     const audio = audioRef.current;
     if (!audio) return;
     if (isPlaying) {
-      setIsPlaying(false);
       fadeOut(audio);
     } else {
-      setStarted(true);
-      setIsPlaying(true);
       fadeIn(audio);
     }
   };
