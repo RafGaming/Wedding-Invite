@@ -22,21 +22,21 @@ export default function Envelope({ onOpen }) {
   return (
     <div className="envelope-wrapper">
       {(phase === "sealed" || phase === "shrinking") && (
-        <div
-          className={`royal-envelope float-up${phase === "shrinking" ? " envelope-shrinking" : ""}`}
-          onClick={handleOpen}
-          role="button"
-          tabIndex={0}
-          aria-label="Open wedding invitation"
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") handleOpen();
-          }}
-        >
-          <img src="/envelope.png" alt="Wedding envelope" className="envelope-image" />
-          {phase === "sealed" && (
-            <span className="royal-open-text">✉ Open Invitation</span>
-          )}
-        </div>
+        <>
+          <div
+            className={`royal-envelope float-up${phase === "shrinking" ? " envelope-shrinking" : ""}`}
+            onClick={handleOpen}
+            role="button"
+            tabIndex={0}
+            aria-label="Open wedding invitation"
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") handleOpen();
+            }}
+          >
+            <img src="/envelope.png" alt="Wedding envelope" className="envelope-image" />
+          </div>
+          <span className={`royal-open-text${phase === "shrinking" ? " royal-open-text--fading" : ""}`}>✉ Open Invitation</span>
+        </>
       )}
 
       {(phase === "revealing" || phase === "done") && (
