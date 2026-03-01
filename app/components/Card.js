@@ -26,7 +26,7 @@ export default function Card() {
         <span className="royal-name gold-shimmer">Jethro Dionisio</span>
         <span className="royal-and">&amp;</span>
         <span className="royal-name gold-shimmer">
-          Francisca Domingo&#x2011;Dionisio
+          Francisca Domingo
         </span>
       </div>
 
