@@ -6,7 +6,7 @@ import "./animations.css";
 const SHRINK_DURATION_MS = 700;
 const GROW_DURATION_MS = 800;
 
-export default function Envelope({ onOpen }) {
+export default function Envelope({ onOpen, ready }) {
   const [phase, setPhase] = useState("sealed"); // sealed, shrinking, revealing, done
 
   const handleOpen = () => {
@@ -19,8 +19,10 @@ export default function Envelope({ onOpen }) {
     }, SHRINK_DURATION_MS + GROW_DURATION_MS);
   };
 
+  const visibilityClass = ready ? " envelope-visible" : " envelope-hidden";
+
   return (
-    <div className="envelope-wrapper">
+    <div className={`envelope-wrapper${visibilityClass}`}>
       {(phase === "sealed" || phase === "shrinking") && (
         <>
           <div

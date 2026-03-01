@@ -205,6 +205,17 @@ gold-shimmer {
   z-index: 2;
 }
 
+/* Envelope visibility transition */
+.envelope-wrapper.envelope-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.envelope-wrapper.envelope-visible {
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
 .royal-envelope {
   position: relative;
   max-width: 520px;
@@ -1408,7 +1419,7 @@ gold-shimmer {
 .rsvp-section {
   position: relative;
   z-index: 5;
-  padding: 80px 20px;
+  padding: 100px 30px;
   display: flex;
   justify-content: center;
   background: linear-gradient(

@@ -11,6 +11,7 @@ import CustomCursor from "./components/CustomCursor";
 
 export default function Home() {
   const [isOpened, setIsOpened] = useState(false);
+  const [preloaderDone, setPreloaderDone] = useState(false);
 
   useEffect(() => {
     const SCROLL_KEYS = new Set([
@@ -47,7 +48,7 @@ export default function Home() {
 
   return (
     <main>
-      <Preloader />
+      <Preloader onDone={() => setPreloaderDone(true)} />
       <CustomCursor />
 
       {/* cinematic parallax background */}
@@ -68,7 +69,7 @@ export default function Home() {
           <img src="/bg.jpg" alt="Wedding background" className="section-photo" />
           <div className="photo-blur-overlay"></div>
         </div>
-        <Envelope onOpen={() => setIsOpened(true)} />
+        <Envelope onOpen={() => setIsOpened(true)} ready={preloaderDone} />
       </section>
 
       {/* scrollable bride & groom sections — rendered only after envelope is opened */}

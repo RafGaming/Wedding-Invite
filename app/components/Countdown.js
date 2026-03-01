@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, forwardRef } from "react";
 
 const FALLBACK_DATE = new Date("2026-12-31T18:00:00");
 
@@ -19,7 +19,7 @@ function pad(n) {
   return String(n).padStart(2, "0");
 }
 
-export default function Countdown() {
+const Countdown = forwardRef(function Countdown(props, ref) {
   const [weddingDate, setWeddingDate] = useState(FALLBACK_DATE);
   const [dateLabel, setDateLabel] = useState("December 31, 2026 (Placeholder)");
   const [timeLeft, setTimeLeft] = useState(() => getTimeLeft(FALLBACK_DATE));
@@ -53,7 +53,7 @@ export default function Countdown() {
   ];
 
   return (
-    <section className="countdown-section scroll-reveal">
+    <section className="countdown-section scroll-reveal" ref={ref}>
       <div className="countdown-inner">
         <span className="section-label gold-text">Counting Down</span>
         <h2 className="countdown-heading">Until We Say&nbsp;&#8220;I&nbsp;Do&#8221;</h2>
@@ -71,4 +71,8 @@ export default function Countdown() {
       </div>
     </section>
   );
-}
+});
+
+Countdown.displayName = "Countdown";
+
+export default Countdown;
