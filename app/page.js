@@ -6,6 +6,9 @@ import Petals from "./components/Petals";
 import CursorTrail from "./components/CursorTrail";
 import MusicPlayer from "./components/MusicPlayer";
 import ScrollSections from "./components/ScrollSections";
+import Confetti from "./components/Confetti";
+import Preloader from "./components/Preloader";
+import CustomCursor from "./components/CustomCursor";
 
 export default function Home() {
   const [isOpened, setIsOpened] = useState(false);
@@ -45,6 +48,9 @@ export default function Home() {
 
   return (
     <main>
+      <Preloader />
+      <CustomCursor />
+
       {/* cinematic parallax background */}
       <div className="parallax-bg">
         <div className="bg-layer layer1"></div>
@@ -56,6 +62,9 @@ export default function Home() {
       <Petals />
       <CursorTrail />
       <MusicPlayer />
+
+      {/* confetti burst on open */}
+      <Confetti active={isOpened} />
 
       {/* hero section — floating envelope */}
       <section className="hero-section">

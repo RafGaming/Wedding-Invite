@@ -8,12 +8,21 @@ export default function Card() {
       <div className="corner br"></div>
 
       {/* decorative top flourish */}
-      <div className="card-flourish top-flourish">❧</div>
+      <div className="card-flourish top-flourish stagger-1">❧</div>
 
-      <h1 className="royal-card-title gold-text">You Are Invited</h1>
-      <p className="royal-sub">To the wedding celebration of</p>
+      {/* monogram crest */}
+      <div className="card-monogram stagger-1">
+        <span className="monogram-letter">J</span>
+        <span className="monogram-ampersand">&#x26;</span>
+        <span className="monogram-letter">F</span>
+      </div>
 
-      <div className="royal-names">
+      <h1 className="royal-card-title gold-text stagger-2">You Are Invited</h1>
+      <p className="royal-sub stagger-3">To the wedding celebration of</p>
+
+      <p className="royal-families accent-text stagger-3">Together with their families</p>
+
+      <div className="royal-names stagger-4">
         <span className="royal-name gold-shimmer">Jethro Dionisio</span>
         <span className="royal-and">&amp;</span>
         <span className="royal-name gold-shimmer">
@@ -21,23 +30,22 @@ export default function Card() {
         </span>
       </div>
 
-      <p className="royal-families">Together with their families</p>
+      <div className="royal-divider stagger-5"></div>
 
-      <div className="royal-divider"></div>
-
-      <p className="royal-date">
-        Date: <span className="mauve-text">TBA</span>
+      <p className="royal-date stagger-6">
+        Date: <span className="gold-text">TBA</span>
       </p>
-      <p className="royal-venue">
-        Venue: <span className="mauve-text">To Be Announced</span>
+      <p className="royal-venue stagger-6">
+        Venue: <span className="gold-text">To Be Announced</span>
       </p>
 
-      <p className="royal-reception">Reception to follow</p>
+      <p className="royal-reception gold-text stagger-7">Dinner &amp; Dancing to Follow</p>
+      <p className="royal-dress-code stagger-7">Dress Code: <span className="accent-text">Formal / Semi-Formal</span></p>
 
-      <p className="royal-rsvp">Kindly RSVP</p>
+      <p className="royal-rsvp mauve-text stagger-8">Kindly Respond by [Date]</p>
 
       {/* decorative bottom flourish */}
-      <div className="card-flourish bottom-flourish">❧</div>
+      <div className="card-flourish bottom-flourish stagger-8">❧</div>
     </div>
   );
 }
