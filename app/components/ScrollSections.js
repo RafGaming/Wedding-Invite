@@ -82,7 +82,7 @@ export default function ScrollSections() {
         <div className="photo-text-overlay">
           <span className="section-label gold-text">The Bride</span>
           <h2 className="section-name">
-            Francisca Domingo&#x2011;Dionisio
+            Francisca Domingo
           </h2>
           <p className="section-quote">
             &ldquo;I choose you. And I&rsquo;ll choose you over and over. Without
