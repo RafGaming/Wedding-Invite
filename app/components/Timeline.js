@@ -7,24 +7,28 @@ const MILESTONES = [
     title: "First Met",
     description:
       "Two strangers crossed paths at a mutual friend's gathering, sharing laughs and discovering a world of common interests.",
+    image: "/bg/timeline-first-met.jpg",
   },
   {
     date: "Summer 2019",
     title: "First Date",
     description:
       "A quiet walk along the waterfront turned into hours of conversation — neither of them wanted the evening to end.",
+    image: "/bg/timeline-first-date.jpg",
   },
   {
     date: "December 2024",
     title: "The Proposal",
     description:
       "Under a canopy of fairy lights, Jethro got down on one knee and asked Francisca to spend forever with him. She said yes.",
+    image: "/bg/timeline-proposal.jpg",
   },
   {
     date: "December 31, 2026",
     title: "The Big Day",
     description:
       "Surrounded by family and friends, they will exchange vows and begin their greatest adventure together.",
+    image: "/bg/timeline-big-day.jpg",
   },
 ];
 
@@ -71,6 +75,7 @@ export default function Timeline() {
             >
               <div className="timeline-node" />
               <div className="timeline-card">
+                <img src={m.image} alt={m.title} className="timeline-img" />
                 <span className="timeline-date accent-text">{m.date}</span>
                 <h3 className="timeline-title">{m.title}</h3>
                 <p className="timeline-desc">{m.description}</p>

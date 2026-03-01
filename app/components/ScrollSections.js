@@ -145,6 +145,9 @@ export default function ScrollSections() {
         className="details-section scroll-reveal"
         ref={addRef}
       >
+        <div className="details-bg">
+          <img src="/bg/save-the-date-bg.jpg" alt="" className="details-bg-img" />
+        </div>
         <div className="details-card">
           <h2 className="gold-text details-title">Save the Date</h2>
           <div className="details-grid">

@@ -30,3 +30,22 @@
 - Change colors and fonts by modifying the CSS files located in the `styles` directory.
 - Update the content of the invitation in the `src/pages` directory.
 - Add your own images in the `src/assets/images` folder.
+
+## Adding Your Photos
+
+Place your image files in the `public/bg/` folder using the following filenames:
+
+- `/bg/timeline-first-met.jpg` — Photo for the "First Met" milestone
+- `/bg/timeline-first-date.jpg` — Photo for the "First Date" milestone
+- `/bg/timeline-proposal.jpg` — Photo for "The Proposal" milestone
+- `/bg/timeline-big-day.jpg` — Photo for "The Big Day" milestone
+- `/bg/gallery-1.jpg` — "Our First Photo"
+- `/bg/gallery-2.jpg` — "Adventures Together"
+- `/bg/gallery-3.jpg` — "The Proposal"
+- `/bg/gallery-4.jpg` — "Engagement Party"
+- `/bg/gallery-5.jpg` — "Pre-Wedding Shoot"
+- `/bg/gallery-6.jpg` — "With Family"
+- `/bg/save-the-date-bg.jpg` — Background image for the Save the Date section
+- `/bg/rsvp-bg.jpg` — Background image for the RSVP section
+
+The site will still display correctly even if these images are not yet added.
