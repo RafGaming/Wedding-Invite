@@ -207,8 +207,8 @@ body {
 
 .royal-envelope {
   position: relative;
-  max-width: 420px;
-  width: 100%;
+  max-width: 520px;
+  width: 90vw;
   cursor: pointer;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
@@ -225,20 +225,22 @@ body {
   border-radius: 8px;
 }
 
-/* Open invitation text overlay */
+/* Open invitation text below envelope */
 .royal-open-text {
+  display: block;
+  text-align: center;
   font-family: "Great Vibes", cursive;
   font-size: 24px;
-  color: var(--gold-light);
+  color: var(--gold-light, #E8D5A8);
+  margin-top: 20px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 12px rgba(201, 169, 110, 0.3);
   letter-spacing: 2px;
-  position: absolute;
-  bottom: 22%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 4;
-  white-space: nowrap;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 12px rgba(201, 169, 110, 0.3);
   pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.royal-open-text--fading {
+  opacity: 0;
 }
 
 /* Envelope shrink animation */
@@ -760,6 +762,39 @@ body {
   }
 }
 
+.glitter-particle {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, rgba(201, 169, 110, 0.8) 40%, transparent 70%);
+  box-shadow: 0 0 6px rgba(201, 169, 110, 0.6), 0 0 12px rgba(255, 255, 255, 0.3);
+  animation: glitterFall linear infinite;
+}
+
+@keyframes glitterFall {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) translateX(0) rotate(0deg);
+  }
+  10% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  70% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100vh) translateX(30px) rotate(360deg);
+  }
+}
+
 .cursor-particle {
   position: fixed;
   width: 6px;
@@ -788,7 +823,7 @@ body {
    ════════════��═════════════════════════ */
 @media (max-width: 768px) {
   .royal-envelope {
-    max-width: 340px;
+    max-width: 400px;
   }
 
   .royal-open-text {
@@ -823,7 +858,7 @@ body {
 
 @media (max-width: 480px) {
   .royal-envelope {
-    max-width: 280px;
+    max-width: 320px;
   }
 
   .royal-open-text {
