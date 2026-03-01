@@ -1,11 +1,12 @@
 "use client";
 
 const PHOTOS = [
-  { src: "/bg/groom.jpg", caption: "The Groom", label: "Jethro" },
-  { src: "/bg/bride.jpg", caption: "The Bride", label: "Francisca" },
-  { src: "/bg/couple.jpg", caption: "Together", label: "Our Story" },
-  { src: "/bg/couple.jpg", caption: "Moments", label: "Memories" },
-  { src: "/bg/groom.jpg", caption: "The Journey", label: "Adventure" },
+  { src: "/bg/gallery-1.jpg", caption: "Our First Photo", label: "Beginnings" },
+  { src: "/bg/gallery-2.jpg", caption: "Adventures Together", label: "Travel" },
+  { src: "/bg/gallery-3.jpg", caption: "The Proposal", label: "The Ring" },
+  { src: "/bg/gallery-4.jpg", caption: "Engagement Party", label: "Celebration" },
+  { src: "/bg/gallery-5.jpg", caption: "Pre-Wedding Shoot", label: "Forever" },
+  { src: "/bg/gallery-6.jpg", caption: "With Family", label: "Loved Ones" },
 ];
 
 export default function Gallery() {

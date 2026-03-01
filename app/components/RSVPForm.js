@@ -21,6 +21,9 @@ export default function RSVPForm() {
 
   return (
     <section className="rsvp-section scroll-reveal">
+      <div className="rsvp-bg">
+        <img src="/bg/rsvp-bg.jpg" alt="" className="rsvp-bg-img" />
+      </div>
       <div className="rsvp-inner">
         <span className="section-label gold-text">RSVP</span>
         <h2 className="rsvp-heading">Kindly Respond</h2>
