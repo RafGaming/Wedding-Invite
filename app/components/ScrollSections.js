@@ -1,5 +1,10 @@
 "use client";
 import { useEffect, useRef } from "react";
+import Countdown from "./Countdown";
+import Timeline from "./Timeline";
+import Gallery from "./Gallery";
+import RSVPForm from "./RSVPForm";
+import GuestBook from "./GuestBook";
 
 export default function ScrollSections() {
   const sectionsRef = useRef([]);
@@ -91,6 +96,9 @@ export default function ScrollSections() {
         </div>
       </section>
 
+      {/* ───── TIMELINE ───── */}
+      <Timeline />
+
       {/* ───── OUR STORY ───── */}
       <section
         className="photo-section scroll-reveal"
@@ -120,7 +128,11 @@ export default function ScrollSections() {
         </div>
       </section>
 
+      {/* ───── GALLERY ───── */}
+      <Gallery />
+
       {/* ───── COUNTDOWN & DETAILS ───── */}
+      <Countdown />
       <section
         className="details-section scroll-reveal"
         ref={addRef}
@@ -151,6 +163,12 @@ export default function ScrollSections() {
           </div>
         </div>
       </section>
+
+      {/* ───── RSVP FORM ───── */}
+      <RSVPForm />
+
+      {/* ───── GUEST BOOK ───── */}
+      <GuestBook />
 
       {/* ───── FOOTER ───── */}
       <footer className="wedding-footer">
