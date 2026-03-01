@@ -1,4 +1,16 @@
+"use client";
+import { useState, useEffect } from "react";
+
 export default function Card() {
+  const [details, setDetails] = useState({});
+
+  useEffect(() => {
+    fetch("/api/wedding-details")
+      .then((res) => res.ok ? res.json() : Promise.reject())
+      .then((data) => setDetails(data))
+      .catch(() => {});
+  }, []);
+
   return (
     <div className="card">
       {/* ornamental corners */}
@@ -33,19 +45,20 @@ export default function Card() {
       <div className="royal-divider stagger-5"></div>
 
       <p className="royal-date stagger-6">
-        Date: <span className="gold-text">TBA</span>
+        Date: <span className="gold-text">{details.wedding_date || "TBA"}</span>
       </p>
       <p className="royal-venue stagger-6">
-        Venue: <span className="gold-text">To Be Announced</span>
+        Venue: <span className="gold-text">{details.venue || "To Be Announced"}</span>
       </p>
 
       <p className="royal-reception gold-text stagger-7">Dinner &amp; Dancing to Follow</p>
-      <p className="royal-dress-code stagger-7">Dress Code: <span className="accent-text">Formal / Semi-Formal</span></p>
+      <p className="royal-dress-code stagger-7">Dress Code: <span className="accent-text">{details.dress_code || "Formal / Semi-Formal"}</span></p>
 
-      <p className="royal-rsvp mauve-text stagger-8">Kindly Respond by [Date]</p>
+      <p className="royal-rsvp mauve-text stagger-8">Kindly Respond by {details.rsvp_deadline || "[Date]"}</p>
 
       {/* decorative bottom flourish */}
       <div className="card-flourish bottom-flourish stagger-8">❧</div>
     </div>
   );
 }
+
