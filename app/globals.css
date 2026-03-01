@@ -880,6 +880,9 @@ body {
 
 /* ══════════════════════════════════════
    CARD MONOGRAM
+   Note: "Great Vibes" capital letters (J, F) have extended swash tails
+   that reach ~50% beyond the standard em box. Any future size changes
+   must account for this extra space to avoid clipping.
    ══════════════════════════════════════ */
 .card-monogram {
   display: flex;
@@ -887,20 +890,20 @@ body {
   justify-content: center;
   gap: 6px;
   margin: 4px auto 12px;
-  width: 130px;
-  height: 130px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
   border: 2px solid rgba(201, 169, 110, 0.45);
   box-shadow: 0 0 20px rgba(201, 169, 110, 0.18), inset 0 0 14px rgba(201, 169, 110, 0.06);
   position: relative;
   overflow: visible;
-  padding: 8px;
+  padding: 16px;
 }
 
 .card-monogram::before {
   content: "";
   position: absolute;
-  inset: 6px;
+  inset: 10px;
   border-radius: 50%;
   border: 1px dashed rgba(201, 169, 110, 0.3);
   pointer-events: none;
@@ -908,7 +911,7 @@ body {
 
 .monogram-letter {
   font-family: "Great Vibes", cursive;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   background: linear-gradient(135deg, var(--gold-accent), var(--gold-light), var(--gold-brass));
   -webkit-background-clip: text;
   background-clip: text;
@@ -927,12 +930,12 @@ body {
 
 @media (max-width: 480px) {
   .card-monogram {
-    width: 110px;
-    height: 110px;
+    width: 130px;
+    height: 130px;
   }
 
   .monogram-letter {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 
   .monogram-ampersand {
@@ -1727,7 +1730,9 @@ body {
   align-items: center;
   gap: 6px;
   overflow: visible;
-  padding: 0 30px;
+  padding: 0 40px;
+  min-width: 200px;
+  min-height: 80px;
   animation: preloaderPulse 1.5s ease-in-out infinite;
 }
 
@@ -1738,7 +1743,7 @@ body {
 
 .preloader-monogram .preloader-initial {
   font-family: "Great Vibes", cursive;
-  font-size: 3rem;
+  font-size: 2.5rem;
   background: linear-gradient(135deg, var(--gold-accent), var(--gold-light), var(--gold-brass));
   -webkit-background-clip: text;
   background-clip: text;
