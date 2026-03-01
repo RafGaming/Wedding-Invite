@@ -256,7 +256,11 @@ body {
 
 /* ── Float-up entrance animation ── */
 .float-up {
-  animation: floatUp 1.2s ease-out both;
+  animation: floatUp 1.2s ease-out both, envelopeFloat 3s ease-in-out 1.2s infinite;
+}
+
+.float-up:hover {
+  animation-play-state: paused;
 }
 
 @keyframes floatUp {
@@ -268,6 +272,11 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes envelopeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 /* ══════════════════════════════════════
@@ -880,9 +889,6 @@ body {
 
 /* ══════════════════════════════════════
    CARD MONOGRAM
-   Note: "Great Vibes" capital letters (J, F) have extended swash tails
-   that reach ~50% beyond the standard em box. Any future size changes
-   must account for this extra space to avoid clipping.
    ══════════════════════════════════════ */
 .card-monogram {
   display: flex;
@@ -890,14 +896,12 @@ body {
   justify-content: center;
   gap: 6px;
   margin: 4px auto 12px;
-  width: 160px;
-  height: 160px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   border: 2px solid rgba(201, 169, 110, 0.45);
   box-shadow: 0 0 20px rgba(201, 169, 110, 0.18), inset 0 0 14px rgba(201, 169, 110, 0.06);
   position: relative;
-  overflow: visible;
-  padding: 16px;
 }
 
 .card-monogram::before {
@@ -910,8 +914,9 @@ body {
 }
 
 .monogram-letter {
-  font-family: "Great Vibes", cursive;
-  font-size: 1.5rem;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  font-size: 2.8rem;
   background: linear-gradient(135deg, var(--gold-accent), var(--gold-light), var(--gold-brass));
   -webkit-background-clip: text;
   background-clip: text;
@@ -930,12 +935,12 @@ body {
 
 @media (max-width: 480px) {
   .card-monogram {
-    width: 130px;
-    height: 130px;
+    width: 100px;
+    height: 100px;
   }
 
   .monogram-letter {
-    font-size: 1.2rem;
+    font-size: 2.2rem;
   }
 
   .monogram-ampersand {
@@ -1008,27 +1013,32 @@ body {
 }
 
 /* ══════════════════════════════════════
-   CONFETTI
+   MUSIC TOGGLE
    ══════════════════════════════════════ */
-.confetti-container {
+.music-toggle-btn {
   position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9998;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 169, 110, 0.5);
+  background: rgba(10, 18, 13, 0.75);
+  color: var(--gold-accent);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
 }
 
-@keyframes confettiBurst {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, -50%) translate(0, 0) rotate(0deg);
-  }
-  80% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) rotate(720deg);
-  }
+.music-toggle-btn:hover {
+  background: rgba(201, 169, 110, 0.15);
+  border-color: var(--gold-accent);
+  transform: scale(1.08);
 }
 
 /* ══════════════════════════════════════
@@ -1729,10 +1739,6 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  overflow: visible;
-  padding: 0 40px;
-  min-width: 200px;
-  min-height: 80px;
   animation: preloaderPulse 1.5s ease-in-out infinite;
 }
 
@@ -1742,8 +1748,9 @@ body {
 }
 
 .preloader-monogram .preloader-initial {
-  font-family: "Great Vibes", cursive;
-  font-size: 2.5rem;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  font-size: 3rem;
   background: linear-gradient(135deg, var(--gold-accent), var(--gold-light), var(--gold-brass));
   -webkit-background-clip: text;
   background-clip: text;
