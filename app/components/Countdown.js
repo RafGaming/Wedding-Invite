@@ -1,11 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
 
-const WEDDING_DATE = new Date("2026-12-31T18:00:00");
+const FALLBACK_DATE = new Date("2026-12-31T18:00:00");
 
-function getTimeLeft() {
+function getTimeLeft(weddingDate) {
   const now = new Date();
-  const diff = WEDDING_DATE - now;
+  const diff = weddingDate - now;
   if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
   return {
     days: Math.floor(diff / (1000 * 60 * 60 * 24)),
@@ -20,12 +20,30 @@ function pad(n) {
 }
 
 export default function Countdown() {
-  const [timeLeft, setTimeLeft] = useState(getTimeLeft());
+  const [weddingDate, setWeddingDate] = useState(FALLBACK_DATE);
+  const [dateLabel, setDateLabel] = useState("December 31, 2026 (Placeholder)");
+  const [timeLeft, setTimeLeft] = useState(() => getTimeLeft(FALLBACK_DATE));
 
   useEffect(() => {
-    const id = setInterval(() => setTimeLeft(getTimeLeft()), 1000);
-    return () => clearInterval(id);
+    fetch("/api/wedding-details")
+      .then((res) => res.ok ? res.json() : Promise.reject())
+      .then((data) => {
+        if (data.wedding_date) {
+          const parsed = new Date(data.wedding_date);
+          if (!isNaN(parsed.getTime())) {
+            setWeddingDate(parsed);
+            setDateLabel(data.wedding_date);
+            setTimeLeft(getTimeLeft(parsed));
+          }
+        }
+      })
+      .catch(() => {});
   }, []);
+
+  useEffect(() => {
+    const id = setInterval(() => setTimeLeft(getTimeLeft(weddingDate)), 1000);
+    return () => clearInterval(id);
+  }, [weddingDate]);
 
   const units = [
     { label: "Days", value: timeLeft.days },
@@ -49,7 +67,7 @@ export default function Countdown() {
             </div>
           ))}
         </div>
-        <p className="countdown-note accent-text">December 31, 2026 (Placeholder)</p>
+        <p className="countdown-note accent-text">{dateLabel}</p>
       </div>
     </section>
   );
