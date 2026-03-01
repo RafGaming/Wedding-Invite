@@ -1696,6 +1696,11 @@ gold-shimmer {
 .monogram {
   font-size: 2.24rem;
 }
+
 #monogram {
   font-size: 1.76rem;
+}
+
+.details-section {
+  padding: 40px 20px 60px;
 }
