@@ -3,30 +3,30 @@ import { useState } from "react";
 import Card from "./Card";
 import "./animations.css";
 
-const SHRINK_DURATION_MS = 700;
-const GROW_DURATION_MS = 800;
+const FADE_OVERLAP_MS = 400;
+const GROW_DURATION_MS = 1000;
 
 export default function Envelope({ onOpen, ready }) {
-  const [phase, setPhase] = useState("sealed"); // sealed, shrinking, revealing, done
+  const [phase, setPhase] = useState("sealed"); // sealed, fading, revealing, done
 
   const handleOpen = () => {
     if (phase !== "sealed") return;
-    setPhase("shrinking");
-    setTimeout(() => setPhase("revealing"), SHRINK_DURATION_MS);
+    setPhase("fading");
+    setTimeout(() => setPhase("revealing"), FADE_OVERLAP_MS);
     setTimeout(() => {
       setPhase("done");
       if (onOpen) onOpen();
-    }, SHRINK_DURATION_MS + GROW_DURATION_MS);
+    }, FADE_OVERLAP_MS + GROW_DURATION_MS);
   };
 
   const visibilityClass = ready ? " envelope-visible" : " envelope-hidden";
 
   return (
     <div className={`envelope-wrapper${visibilityClass}`}>
-      {(phase === "sealed" || phase === "shrinking") && (
+      {(phase === "sealed" || phase === "fading") && (
         <>
           <div
-            className={`royal-envelope float-up${phase === "shrinking" ? " envelope-shrinking" : ""}`}
+            className={`royal-envelope float-up${phase === "fading" ? " envelope-fading" : ""}`}
             onClick={handleOpen}
             role="button"
             tabIndex={0}
@@ -37,7 +37,7 @@ export default function Envelope({ onOpen, ready }) {
           >
             <img src="/envelope.png" alt="Wedding envelope" className="envelope-image" />
           </div>
-          <span className={`royal-open-text${phase === "shrinking" ? " royal-open-text--fading" : ""}`}>✉ Open Invitation</span>
+          <span className={`royal-open-text${phase === "fading" ? " royal-open-text--fading" : ""}`}>✉ Open Invitation</span>
         </>
       )}
 
