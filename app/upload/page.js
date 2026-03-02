@@ -131,7 +131,6 @@ export default function UploadPage() {
                   ref={fileInputRef}
                   type="file"
                   accept="image/*"
-                  capture="environment"
                   onChange={handleImageChange}
                   required
                   disabled={loading}
