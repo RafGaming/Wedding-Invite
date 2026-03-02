@@ -1965,3 +1965,38 @@ gold-shimmer {
 #monogram {
   font-size: 1.76rem;
 }
+
+/* ══════════════════════════════════════
+   HANDWRITTEN TEXT TRANSITION
+   ══════════════════════════════════════ */
+.handwritten-wrapper {
+  display: inline;
+}
+
+.hw-char {
+  display: inline-block;
+  opacity: 0;
+  animation: handwriteIn 0.4s ease-out forwards;
+}
+
+@keyframes handwriteIn {
+  0% {
+    opacity: 0;
+    filter: blur(4px);
+    transform: translateY(8px) rotate(-2deg) scaleX(0.7);
+  }
+  60% {
+    opacity: 1;
+    filter: blur(1px);
+    transform: translateY(-2px) rotate(0.5deg) scaleX(1.02);
+  }
+  80% {
+    filter: blur(0);
+    transform: translateY(1px) rotate(-0.3deg) scaleX(1);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) rotate(0deg) scaleX(1);
+  }
+}
